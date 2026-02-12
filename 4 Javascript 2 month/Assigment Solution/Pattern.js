@@ -163,36 +163,29 @@ const p6 = (n) => {
 // *****
 // ***
 // *
+
 // 8. Generate the following pattern using nested loops:
 // 54321
 // 4321
 // 321
 // 21
 // 1
+
 // 9.Write a program to print a hollow square pattern with stars:
 // *****
 // * *
 // * *
 // * *
 // *****
+
 // 10.Create a program to print a mirrored right-angle triangle:
 // *
 // **
 // ***
 // ****
 // *****
-// 11.Write a Java program to print a Pascal’s triangle
-// 1
-// 11
-// 121
-// 1331
-// 12.Create a program to print the following pattern of numbers:
-// 1
-// 01
-// 101
-// 0101
-// 10101
 
 
 
-// hiii
+
+

@@ -1,0 +1,21 @@
+  .a {
+      color: aqua;
+    }
+    
+    .b {
+        color: rgb(126, 162, 15);
+     
+  }
+
+  .c {
+      color: rgb(179, 37, 113);
+  }
+
+  .main{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    background-color: bisque;
+    align-items: center;
+    height: 400px;
+  }
