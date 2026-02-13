@@ -246,6 +246,7 @@ const p9 = (n) => {
         for (let j = 0; j < n; j++) {
             if (j == 0 || j == n - 1) {
                 result += '*'
+                
             }
             else {
                 result += ' '
