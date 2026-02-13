@@ -12,11 +12,16 @@
 // == compare value only
 // === compare value and data type
 
-console.log("a" == "A")
-console.log("a" === "A")
-console.log("1" == true)
-console.log("1" === "1")
-console.log("a" == 0)
-console.log("a" === 0)
-console.log(0 == false)
-console.log(0 === false)
+// console.log("a" == "A")
+// console.log("a" === "A")
+// console.log("1" == true)
+// console.log("1" === "1")
+// console.log("a" == 0)
+// console.log("a" === 0)
+// console.log(0 == false)
+// console.log(0 === false)
+
+
+
+
+console.log(8 ** (1 / 3))

@@ -41,7 +41,7 @@ const p2 = (n, v) => {
     let result = ''
 
     for (let i = 0; i < n; i++) {
-        for (let j = 0; j <=i; j++) {
+        for (let j = 0; j <= i; j++) {
             result += v
         }
         result += '\n'
@@ -65,7 +65,7 @@ const p3 = (n, v) => {
     let result = ''
 
     for (let i = 0; i < n; i++) {
-        for (let j = i; j <n; j++) {
+        for (let j = i; j < n; j++) {
             result += v
         }
         result += '\n'
@@ -90,7 +90,7 @@ const p4 = (n) => {
     let result = ''
 
     for (let i = 1; i <= n; i++) {
-        for (let j = 1; j <=i; j++) {
+        for (let j = 1; j <= i; j++) {
             result += j
         }
         result += '\n'
@@ -111,17 +111,17 @@ const p5 = (n) => {
     let result = ''
 
     for (let i = 1; i <= n; i++) {
-        
-        for (let j = i; j <n; j++) {
+
+        for (let j = i; j < n; j++) {
             result += ' '
         }
-        
-        for (let j = 0; j <2*i-1; j++) {
+
+        for (let j = 0; j < 2 * i - 1; j++) {
             result += '*'
         }
-  
-        result+='\n'
-        
+
+        result += '\n'
+
     }
     return result
 }
@@ -143,7 +143,7 @@ const p6 = (n) => {
     let result = ''
     let c = 1
     for (let i = 1; i <= n; i++) {
-        for (let j = 1; j <=i; j++) {
+        for (let j = 1; j <= i; j++) {
             result += c
         }
         c++
@@ -164,6 +164,42 @@ const p6 = (n) => {
 // ***
 // *
 
+const p7 = (n) => {
+
+    let result = ''
+
+    for (let i = 1; i <= n; i++) {
+
+        for (let j = i; j < n; j++) {
+            result += ' '
+        }
+
+        for (let j = 0; j < 2 * i - 1; j++) {
+            result += '*'
+        }
+
+        result += '\n'
+
+    }
+
+    for (let i = n; i >= 0; i--) {
+
+        for (let j = i; j < n; j++) {
+            result += ' '
+        }
+
+        for (let j = 0; j < 2 * i - 1; j++) {
+            result += '*'
+        }
+
+        result += '\n'
+
+    }
+    return result
+}
+
+// console.log(p7(5))
+
 // 8. Generate the following pattern using nested loops:
 // 54321
 // 4321
@@ -171,12 +207,62 @@ const p6 = (n) => {
 // 21
 // 1
 
+const p8 = (n) => {
+
+    let result = ''
+    let count = n
+    for (let i = 0; i < n; i++) {
+        let c = count
+        for (let j = i; j < n; j++) {
+            result += c
+            c--
+        }
+        count--
+        result += '\n'
+    }
+    return result
+}
+// console.log(p8(5))
+
+
 // 9.Write a program to print a hollow square pattern with stars:
 // *****
-// * *
-// * *
-// * *
+// *   *
+// *   *
+// *   *
 // *****
+
+const p9 = (n) => {
+
+    let result = ''
+
+    for (let i = 1; i <= n; i++) {
+        result += '*'
+    }
+    result += '\n'
+
+
+    for (let i = 0; i < n - 2; i++) {
+        for (let j = 0; j < n; j++) {
+            if (j == 0 || j == n - 1) {
+                result += '*'
+            }
+            else {
+                result += ' '
+            }
+        }
+        result += '\n'
+    }
+
+    for (let i = 1; i <= n; i++) {
+        result += '*'
+    }
+   
+
+    return result
+}
+
+console.log(p9(10))  
 
 // 10.Create a program to print a mirrored right-angle triangle:
 // *
