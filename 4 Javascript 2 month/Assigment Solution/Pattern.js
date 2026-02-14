@@ -263,7 +263,7 @@ const p9 = (n) => {
     return result
 }
 
-console.log(p9(10))  
+// console.log(p9(10))  
 
 // 10.Create a program to print a mirrored right-angle triangle:
 // *
@@ -276,3 +276,30 @@ console.log(p9(10))
 
 
 
+//
+
+const p11 = (n) => {
+    let result =''
+    let c = 1
+    let a = 1
+    for(let i=0;i<n;i++){
+        for(let j=0;j<n;j++){
+            if(c%2==1){
+                result+='.'
+            }
+            else{
+                result+=a
+                a++
+            }
+            c++
+        }
+        result+='\n'
+    }
+
+    return result
+}
+
+console.log(p11(3))
+
+
+ 
