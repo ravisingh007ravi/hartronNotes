@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(89, 91, 90);
+    height: 100vh;
+    align-items: center;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+.search{
+    gap: 10px;
+    background-color: white; 
+    padding: 8px 10px;
+    border-radius: 50px;
+}
+
+.ai{
+    background-color: gray ;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
