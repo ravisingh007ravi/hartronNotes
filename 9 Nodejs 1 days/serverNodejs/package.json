@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "express": "^5.2.1",
+    "mongoose": "^9.2.1",
     "nodemon": "^3.1.11"
-  },
-  "devDependencies": {}
+  }
 }
