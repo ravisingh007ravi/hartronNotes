@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../output.css">
+</head>
+<body>
+    <div>
+        <h1>Hello</h1>
+        <button onclick="show()">Click Byee</button>
+        <button onclick="show1()"> Click Hii</button>
+        <p id="ravi">Result</p>
+    </div>
+
+
+    <script>
+        const show =()=>{
+           return document.getElementById("ravi").innerHTML = "Byee"
+        }
+
+        const show1 =()=>{
+           return document.getElementById("ravi").innerHTML = "Hiii"
+        }
+    </script>
+</body>
+</html>

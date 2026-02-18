@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+
+.flex{
+    display: flex;
+}
+.items-center{
+    align-items: center;
+}
+.justify-center{
+    justify-content: center;
+}
+
+.p-1{
+    padding: 10px;
+}
+.p-5{
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+}
+
+.pt-1{
+    padding:5px  3px;
+}
+.pt-2{
+    padding-top:20px ;
+}
+
+.h-screen{
+    height: 100vh;
+} 
+
+.w-screen{
+    width: 100vw;
+}
+
+.bg-pink-900{
+    background-color: rgb(99, 86, 92);
+}
+
+.bg-white{
+    background-color: white;
+}
+
+.flex-col{
+    flex-direction: column;
+    gap: 20px;
+}
+
+button{
+    background-color: purple;
+    border: none;
+    color: white;
+    padding: 5px 2px; 
+    border-radius: 5px      ;
+}
