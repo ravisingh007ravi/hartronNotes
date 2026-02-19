@@ -10,7 +10,6 @@ const lowerCase = ()=>{
 }
 
 const clera = ()=>{
-    let str = document.getElementById('v').value
     return document.getElementById('r').innerHTML = ''
 }
 
@@ -29,6 +28,6 @@ const wordLenght = ()=>{
 const removeSpace = ()=>{
     let str = document.getElementById('v').value
 
-    return document.getElementById('r').innerHTML = str.trim().split('').join('')
+    return document.getElementById('r').innerHTML = str.trim().split(' ').join('')
 }
 
