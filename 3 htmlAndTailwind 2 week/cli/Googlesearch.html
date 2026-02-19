@@ -5,30 +5,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 </head>
 
-<body class="bg-black">
+<body class="bg-black h-screen flex items-center justify-center">
 
-  <div class="flex justify-center pt-30">
+  <div class=" gap-10 flex flex-col items-center px-4">
 
-    <div class="flex flex-col justify-center items-center gap-10">
-      <img class="h-30 bg-gray-600 py-5 rounded-lg" src="./google.png" alt="google img">
+    <!-- Logo -->
+    <img class="h-28 bg-gray-800 py-5 px-10 rounded-xl shadow-lg hover:scale-105 transition duration-300"
+      src="./google.png" alt="google img">
 
-      <div class="bg-white flex items-center py-3 px-5 rounded-full gap-5">
-        <div>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text">
-        <i class="fa-solid fa-microphone"></i>
-        <i class="fa-solid fa-camera"></i>
-        </div>
+    <!-- Search Box -->
+    <div
+      class="bg-white w-full max-w-2xl flex items-center justify-between px-6 py-3 rounded-full shadow-lg hover:shadow-2xl transition duration-300 focus-within:ring-2 focus-within:ring-blue-500">
 
-        <div class="flex items-center bg-gray-500 text-white px-2 rounded-full">
-          <i class="fa-solid fa-audio-description"></i>
-          <h1>AI Mode</h1>
-        </div>
+      <!-- Left Icons + Input -->
+      <div class="flex items-center  gap-4 ">
+
+        <i class="fa-solid fa-magnifying-glass text-gray-500"></i>
+
+        <input
+          class="w-96.25 outline-none text-lg"
+          type="text"
+          placeholder="Search Google or type a URL">
+
+        <i class="fa-solid fa-microphone text-blue-500 cursor-pointer hover:scale-110 transition"></i>
+
+        <i class="fa-solid fa-camera text-green-600 cursor-pointer hover:scale-110 transition"></i>
       </div>
+
+      <!-- AI Mode Button -->
+      <div
+        class="hover:-scale-y-110  hover:duration-300 ml-4 flex items-center gap-2 bg-linear-to-r from-purple-500 to-blue-500 text-white px-4 py-1.5 rounded-full cursor-pointer hover:scale-105 transition duration-300">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span class="text-sm font-medium block">AI Mode</span>
+      </div>
+
     </div>
+
   </div>
 
 </body>
