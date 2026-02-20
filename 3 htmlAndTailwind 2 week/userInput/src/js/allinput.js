@@ -1,33 +1,17 @@
-const upperCase = ()=>{
-    let str = document.getElementById('v').value
-    return document.getElementById('r').innerHTML = str.toUpperCase()
-}
+const input = document.getElementById('v');
+const result = document.getElementById('r');
+
+const upperCase = () => result.textContent = input.value.toUpperCase();
+
+const lowerCase = () => result.textContent = input.value.toLowerCase();
+
+const clera = () =>  result.textContent = '';
+
+const textLenght = () => result.textContent = input.value.length;
+
+const wordLenght = () => result.textContent = input.value.trim().split(' ').length;
+
+const removeSpace = () => result.textContent = input.value.trim().split(' ').join('');
 
 
-const lowerCase = ()=>{
-    let str = document.getElementById('v').value
-    return document.getElementById('r').innerHTML = str.toLowerCase()
-}
-
-const clera = ()=>{
-    return document.getElementById('r').innerHTML = ''
-}
-
-
-const textLenght = ()=>{
-    let str = document.getElementById('v').value
-    return document.getElementById('r').innerHTML = str.length
-}
-
-const wordLenght = ()=>{
-    let str = document.getElementById('v').value
-
-    return document.getElementById('r').innerHTML = str.trim().split(' ').length
-}
-
-const removeSpace = ()=>{
-    let str = document.getElementById('v').value
-
-    return document.getElementById('r').innerHTML = str.trim().split(' ').join('')
-}
 
