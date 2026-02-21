@@ -49,7 +49,7 @@
 
 let course = 'AI'
 let exStd = false
-let interns = true
+let interns = false
 let pass = false
 let placmentG = true
 let paymentType = 'cash'
@@ -79,4 +79,3 @@ course == 'AI' || course == "CS" || course == 'DM' || course == 'DA' ?
                         console.log('No Discount', course)
     : console.log("not found")
 
-    
