@@ -47,13 +47,13 @@
 // }
 
 
-let course = 'AI'
+let course = 'CS'
 let exStd = false
 let interns = false
 let pass = false
 let placmentG = true
-let paymentType = 'cash'
-let emiTime = 3
+let paymentType = 'emi'
+let emiTime = 12
 
 course == 'AI' || course == "CS" || course == 'DM' || course == 'DA' ?
     exStd ?
@@ -79,3 +79,4 @@ course == 'AI' || course == "CS" || course == 'DM' || course == 'DA' ?
                         console.log('No Discount', course)
     : console.log("not found")
 
+ 
