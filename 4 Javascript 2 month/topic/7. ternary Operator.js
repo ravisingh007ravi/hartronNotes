@@ -29,36 +29,26 @@ let placmentG = true
 let paymentType = 'emi'
 let emiTime = 12
 
-course == 'AI' || course == 'CS' || course == 'DM' || course == 'DA'
-?
-
+course == 'AI' || course == 'CS' || course == 'DM' || course == 'DA' ?
     exStd
-    ?
-        paymentType == 'cash'
-        ? console.log('20% course Discount and 10% cash Discount', course)
-        : emiTime == 3
-            ? console.log('English course Free')
-            : emiTime == 6
-                ? console.log('2% discount', course)
-                : console.log('No Discount', course)
-
-    : interns && pass
         ?
-            paymentType == 'cash'
-            ? console.log('10% course Discount and 10% cash Discount', course)
+        paymentType == 'cash'
+            ? console.log('20% course Discount and 10% cash Discount', course)
             : emiTime == 3
                 ? console.log('English course Free')
-                : emiTime == 6
-                    ? console.log('2% discount', course)
-                    : console.log('No Discount', course)
+                : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
 
-        :
+        : interns && pass ?
             paymentType == 'cash'
-            ? console.log('10% course Discount and 10% cash Discount', course)
-            : emiTime == 3
-                ? console.log('English course Free')
-                : emiTime == 6
-                    ? console.log('2% discount', course)
-                    : console.log('No Discount', course)
+                ? console.log('10% course Discount and 10% cash Discount', course)
+                : emiTime == 3
+                    ? console.log('English course Free')
+                    : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
 
-: console.log('Not Found')
+            : paymentType == 'cash'
+                ? console.log('10% course Discount and 10% cash Discount', course)
+                : emiTime == 3
+                    ? console.log('English course Free')
+                    : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
+
+    : console.log('Not Found')  
