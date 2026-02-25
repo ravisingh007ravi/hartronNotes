@@ -1,4 +1,4 @@
-// type of Operator 
+ // type of Operator 
 // 1 .Airthmetic Operator (+,-,*,/,%)
 // 2 .Relational Operator (==,!=,>,<,>=,<=)
 // 3 .Logical Operator (&&,||,!)
@@ -8,7 +8,7 @@
 // 7 .Bitwise Operator (&,|,^,~,<<,>>)\
 
 
-// Airthmetic Operator 
+// Airthmetic Operator               
 // a = 10
 // b = 5A
 // console.log(a + b)
