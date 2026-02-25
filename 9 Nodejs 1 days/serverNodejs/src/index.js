@@ -2,13 +2,15 @@ import express from 'express';
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import routes  from './routes/routes.js'
-
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT
+app.use(express.json())
 
-mongoose.connect(process.env.MonGoDBUrl)
+const port = process.env.Port
+
+
+mongoose.connect(process.env.MongoDBUrl)
     .then(() => console.log("Database Connected"))
     .catch((e) => console.log(e.message))
 

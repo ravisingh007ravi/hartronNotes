@@ -1,5 +1,5 @@
 import express from 'express'
-import { abc } from '../controller/user_controller.js'
+import { create_user } from '../controller/user_controller.js'
 const routes = express.Router()
 
 
@@ -12,6 +12,6 @@ const routes = express.Router()
 // d (delete) = delete 
 
 
-routes.get('/ravi', abc)
+routes.post('/create_user', create_user)
 
 export default routes
