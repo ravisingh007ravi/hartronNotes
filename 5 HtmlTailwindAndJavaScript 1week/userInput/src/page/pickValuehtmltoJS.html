@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input  id="a" type="text" placeholder="enter text" >
+
+    <button onclick="pickValue()">pick Value</button>
+
+    <h1 id="result">Result</h1>
+
+    <script>
+
+        const pickValue = ()=>{
+            let v = document.getElementById("a").value
+
+            return document.getElementById("result").innerHTML = v
+        }
+
+    </script>
+</body>
+</html>
