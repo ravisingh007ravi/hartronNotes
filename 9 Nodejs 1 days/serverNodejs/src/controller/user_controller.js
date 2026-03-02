@@ -1,8 +1,12 @@
-export const create_user = (req, res) => {
+import userModel from '../model/user_model.js'
+
+export const create_user = async(req, res) => {
     try {
         const data = req.body
 
-        res.status(400).send({status:true,msg:`welcome ${req.body.name}`})
+        const DB = await userModel.create(data)
+
+        res.status(400).send({status:true,msg:`User is Created`,DB})
 
     }
     catch (e) {

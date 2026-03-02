@@ -1,3 +1,28 @@
+console.log(true == 'undefined' == null || true == 'true' && false == !1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // let n  = 50
 
 // if(n>2){
