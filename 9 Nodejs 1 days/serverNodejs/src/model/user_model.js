@@ -8,4 +8,5 @@ const userSchema = new mongoose.Schema({
 
 })
 
-export default mongoose.model('ravi', userSchema) 
+export default mongoose.model('user', userSchema) 
+

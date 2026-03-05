@@ -18,10 +18,12 @@
 
 // find even 1 to 20
 
-for(let r=1;r<=20;r++){
-    if(r%2==0){
-        console.log(r)
-    }
-}
+// for(let r=1;r<=20;r++){
+//     if(r%2==0){
+//         console.log(r)
+//     }
+// }
 
-    
+// let a = 'hello'
+
+
