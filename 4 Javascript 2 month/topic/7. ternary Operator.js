@@ -1,3 +1,50 @@
+
+`// if(10>5){
+//     console.log('A')
+// }`
+// else{
+//     console.log('B')
+// }
+
+
+// 10 > 5 ? console.log('A') : console.log('B')
+// 10>5 && console.log('hiii')
+n = -8
+// n = 0 ? console.log('P') : console.log('N')
+
+n>0 && console.log('P')
+n<0 && console.log('N')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // let a = 10
 // let b = 20
 // let c = 30
@@ -21,34 +68,34 @@
 
 
 
-let course = 'CS'
-let exStd = false
-let interns = false
-let pass = false
-let placmentG = true
-let paymentType = 'emi'
-let emiTime = 12
+// let course = 'CS'
+// let exStd = false
+// let interns = false
+// let pass = false
+// let placmentG = true
+// let paymentType = 'emi'
+// let emiTime = 12
 
-course == 'AI' || course == 'CS' || course == 'DM' || course == 'DA' ?
-    exStd
-        ?
-        paymentType == 'cash'
-            ? console.log('20% course Discount and 10% cash Discount', course)
-            : emiTime == 3
-                ? console.log('English course Free')
-                : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
+// course == 'AI' || course == 'CS' || course == 'DM' || course == 'DA' ?
+//     exStd
+//         ?
+//         paymentType == 'cash'
+//             ? console.log('20% course Discount and 10% cash Discount', course)
+//             : emiTime == 3
+//                 ? console.log('English course Free')
+//                 : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
 
-        : interns && pass ?
-            paymentType == 'cash'
-                ? console.log('10% course Discount and 10% cash Discount', course)
-                : emiTime == 3
-                    ? console.log('English course Free')
-                    : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
+//         : interns && pass ?
+//             paymentType == 'cash'
+//                 ? console.log('10% course Discount and 10% cash Discount', course)
+//                 : emiTime == 3
+//                     ? console.log('English course Free')
+//                     : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
 
-            : paymentType == 'cash'
-                ? console.log('10% course Discount and 10% cash Discount', course)
-                : emiTime == 3
-                    ? console.log('English course Free')
-                    : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
+//             : paymentType == 'cash'
+//                 ? console.log('10% course Discount and 10% cash Discount', course)
+//                 : emiTime == 3
+//                     ? console.log('English course Free')
+//                     : emiTime == 6 ? console.log('2% discount', course) : console.log('No Discount', course)
 
-    : console.log('Not Found')  
+//     : console.log('Not Found')  
