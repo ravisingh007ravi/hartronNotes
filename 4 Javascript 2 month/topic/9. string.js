@@ -1,29 +1,39 @@
-// let str = 'abcd'
+// // let and const are block and local scope variable
+// // var is global scope variable
 
-// // console.log(str[0])
-// // console.log(str[1])
-// // console.log(str[2])
 
-// // console.log(str.length)
 
-// for (let i = 0; i < str.length; i++) {
-//     console.log(str[i])
-// }
-// console.log()
-// for (let i = str.length - 1; i >= 0; i--) {
-//     console.log(str[i])
+// const a = 10
+// {
+//     console.log(a)
 // }
 
+// let a = '. 1../.23'
+// a[0] = 1
+// console.log(a[0],a[2])
+// console.log(a)
 
+// let arr = ['fdsafdsafsd',2,3]
+// arr[0] =1
+// console.log(arr[0])
 
-// find even 1 to 20
+let arr = [1, 2, 3]
+// add value last index
+arr.push(555)//[1,2,3,555]
+arr.push(1)//[1,2,3,555,1]
+// add value first index
+arr.unshift(0)//[0,1,2,3,555]
+arr.unshift(1)//[1,0,1,2,3,555]
+arr.unshift(2)//[2,1,0,1,2,3,555]
+console.log(arr)
 
-// for(let r=1;r<=20;r++){
-//     if(r%2==0){
-//         console.log(r)
-//     }
-// }
+//delete last index value 
+arr.pop()//[2,1,0,1,2,3]
+arr.pop()//[2,1,0,1,2]
+console.log(arr)
+//delete first index value 
+arr.shift()//[1,0,1,2,3]
+arr.shift()//[0,1,2]
+console.log(arr)
 
-// let a = 'hello'
-
-
+` `
