@@ -1,28 +1,25 @@
-// // block scope variable like let and const 
-// // if else, nested if else ternary Operater 
-// // loop - normal for, for of ,for in
-// // function - normal function and arrow function 
-// // string, array and object 
+const pro1=(str)=>{
+    let obj={}
+    for(let char of str){
+        if(obj[char])obj[char]++
+        else(obj[char]=1)
+    }
 
-// // array.splice(start, deleteCount, newValue)
+     let arr = Object.entries(obj)
+     console.log(arr)
+     let vowel=""
+     let con = ''
+     for(let char of arr){
+        let lower = char[0].toLowerCase()
+        if(lower=='a'|| lower=='e'|| lower=='i'|| lower=='o'|| lower=='u'){
+            vowel+=char[0]+char[1]+' '
+        }
+        else{
+            con+=char[0]+char[1]+' '
+        }
+     } 
 
-// // let arr = [1,2,3,4,5]
-
-// // arr.splice(2,1)
-// // console.log(arr)
-
-
-// let a = '10'
-// a = 20  // 20
-// a = a + 10 + '1' //301
-// a = a + 20 + '1' // 301201
-// console.log(a)
-
-const a = {
-    name: 'A',
-    age: 20
+     return `${vowel}\n${con}`
 }
+console.log(pro1('aabbchello'))
 
-for(let v in a){
-    console.log(v)
-}

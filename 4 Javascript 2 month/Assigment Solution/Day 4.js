@@ -72,11 +72,8 @@ const pro14 = (str) => {
 }
 
 
-console.log(pro14('hello kaise ho ')) // Hello Kaise Ho
-console.log(pro14('byee ab nhi Milege')) // Byee Ab Nhi Milege
-
-
-
+// console.log(pro14('hello kaise ho ')) // Hello Kaise Ho
+// console.log(pro14('byee ab nhi Milege')) // Byee Ab Nhi Milege
 
 
 
