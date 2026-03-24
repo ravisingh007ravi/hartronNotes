@@ -9,3 +9,4 @@ let obj = { a: 1, b: 2, cat: 3 }
 
 const { cat } = obj
 console.log(cat)
+
