@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
             isDelete: { type: Boolean, default: false },
             isVerification: { type: Boolean, default: false },
             userOtp: { type: Number, default: null },
-            userOtpExpire: { type: Date, default: null },
+            userOtpExpire: { type: Number, default: null },
             blockType: { type: String, enum: ['delete', 'block','unblock'], default: 'unblock' },
             resone: { type: String }
         },

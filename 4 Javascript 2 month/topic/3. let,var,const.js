@@ -47,10 +47,18 @@
 // var a =3
 // var a =38
 
-let a = 10
+// let a = 10
 
-{
-    console.log(a)
+// {
+//     console.log(a)
+// }
+
+
+let str = '1234'
+let sum = 0
+
+for (let i = 0; i < str.length; i++) {
+    sum += Number(str[i])
 }
 
-
+console.log(sum)

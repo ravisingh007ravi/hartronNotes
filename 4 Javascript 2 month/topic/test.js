@@ -125,8 +125,66 @@
 
 
 
+// let str = 'rrrrazdfefsdfsdafsfsd'
+// let result = str.match(/[aeiou]/gi).join('')
+// console.log(result)
 
-let str = 'rrrrazdfefsdfsdafsfsd'
-let result = str.match(/[aeiou]/gi).join('')
-console.log(result)
+// let t1 = 0
+// let t2 = 1
+// let nt
+// let temp = [0,1]
+// let n = 10
+// for (let i = 0; i < n - 2; i++) {
+//     nt = t1 + t2
+//     temp.push(nt)
+//     t1 = t2
+//     t2 = nt
+// }
 
+// console.log(temp)
+
+// let n = 1234
+// let str = ''+n //'1234'
+// let sum = 0
+
+// for (let i = 0; i < str.length; i++) {
+//     sum+=parseInt(str[i])
+
+// }
+
+// console.log(sum)
+
+
+// let n = 12
+// let temp = ''
+// let sum = 0
+// for (let i = 1; i <= n; i++) {
+//     if (n % i == 0) {
+//         temp += i + ' '
+//         sum += i
+//     }
+// }
+// console.log(temp, sum)   
+
+// let a = 5
+// let b = 9
+// let c = 2 
+
+// if(a>b && a>c){
+//     console.log(a)
+// }
+// else if(b>a&& b>c){
+//     console.log(b)
+// }
+// else{
+//     console.log(c)
+// }
+
+let bag = ''
+
+for(let i=1;i<=20;i++){
+   if(i%2==0){
+     bag+=i+' '
+   }
+}
+console.log(bag)
