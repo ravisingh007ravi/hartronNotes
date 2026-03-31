@@ -180,11 +180,25 @@
 //     console.log(c)
 // }
 
-let bag = ''
+let str = "a bb    c"
+let word = ''
+let arr = []
 
-for(let i=1;i<=20;i++){
-   if(i%2==0){
-     bag+=i+' '
-   }
+for (let i = 0; i < str.length; i++) {
+  if (str[i] == ' ') {
+    if (word.length > 0) {
+      arr.push(word)
+      word = ''
+    }
+  }
+  else {
+    word += str[i]
+  }
 }
-console.log(bag)
+if (word.length > 0) {
+  arr.push(word)
+}
+
+console.log(arr, arr.length)
+
+         
