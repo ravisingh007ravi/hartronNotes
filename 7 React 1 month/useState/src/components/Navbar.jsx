@@ -13,7 +13,7 @@ export default function Navbar() {
     }
 
     return (
-        <div className='bg-black text-white min-h-screen text-9xl'>
+        <div>
 
             <button onClick={test}> Click</button> <br />
 
