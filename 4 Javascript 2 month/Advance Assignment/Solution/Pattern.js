@@ -124,3 +124,73 @@
 
 
 
+
+
+// 1.Generate a pattern of numbers: 3
+// 1 2 3
+// 4 5 6 
+// 7 8 9
+
+// let n = 3
+// let bag = ''
+// let c = 1
+// for (let i = 0; i < n; i++) {
+//     for (let j = 0; j < n; j++) {
+//         bag+=c + ' '
+            // c++
+//     }
+//     bag+='\n'
+// }
+
+// console.log(bag)
+
+
+
+// 2.Generate a pattern of numbers: 3
+// A B C
+// D E F 
+// G H I
+
+// let n = 3
+// let bag = ''
+// let c = 0
+// let aplh = 'ABCDEGHHIJ'
+// for (let i = 0; i < n; i++) {
+//     for (let j = 0; j < n; j++) {
+//         bag+=aplh[c] + ' '
+//         c++
+//     }
+//     bag+='\n'
+// }
+
+// console.log(bag)
+
+
+// 3.Generate a pattern of numbers: 3
+// 1 2 3
+// 2 4 6
+// 3 6 9 
+
+
+let n = 3
+let bag = ''
+
+for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+        bag+=i*j + ' '
+    }
+    bag+='\n'
+    
+}
+
+console.log(bag)
+
+// 4.Generate a pattern of numbers: 3
+// 1
+// 2 4  
+// 3 6 9
+
+// 6.Generate a pattern of numbers: 3
+// _ _ A
+// _ A B
+// A B C

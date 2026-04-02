@@ -25,7 +25,7 @@ export default function Api() {
             <br />
             {data[0]?.title} <br />
             {data[1]?.title} <br />
-            {data[2]?.date} <br />
+            {data[2]?.title} <br />
         </div>
     )
 }
