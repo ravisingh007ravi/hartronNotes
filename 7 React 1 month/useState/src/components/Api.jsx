@@ -35,7 +35,7 @@ export default function Api() {
                             images.map((v,i)=>(
                                 <img src={v} alt="img" />
                             ))
-                        }
+                        }ll
                     </div>
                 ))
             }

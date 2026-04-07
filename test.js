@@ -1,13 +1,14 @@
-let n=3 
-let bag=''
-let c=0
-for(let i=0;i<n;i++){
-    for(let j=0;j<n;j++){
-        c++
-        bag+=c+' ' 
+function a(n){
+    if(n%2==0){
+       return 'Even'
     }
-    bag+='\n'
-
-
+    else{
+        return 'Odd'
+    }
 }
-console.log(bag)
+
+
+console.log(a(1))
+console.log(a(21))
+console.log(a(11232))
+
