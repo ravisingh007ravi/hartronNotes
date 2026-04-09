@@ -25,7 +25,7 @@ export default function User() {
 
                 {/* right side div  */}
                 <div>
-                    <select onClick={(e) => setLimit(e.target.value)} name="" id="">
+                    <select className='cursor-pointer' onClick={(e) => setLimit(e.target.value)} name="" id="">
                         {
                             [10, 20, 30, 50, 100].map((v, i) => (
                                 <option key={i} className='text-black' value={v}>{v}</option>
@@ -49,13 +49,12 @@ export default function User() {
                 ))}
             </div>
 
-            {/* page No  */}
             <div className="flex justify-center items-center gap-6 mt-6">
 
                 <button
                     onClick={() => setPage(page - 1)}
                     disabled={page === 1}
-                    className={`px-5 py-2 rounded-lg font-medium transition 
+                    className={`px-5 py-2 rounded-lg font-medium transition cursor-pointer
                     ${page === 1? "bg-gray-200 text-gray-400 cursor-not-allowed": "bg-blue-500 text-white hover:bg-blue-600 shadow-md"}`}
                 >
                     ← Previous
@@ -64,7 +63,7 @@ export default function User() {
                 <span className="text-lg font-semibold text-gray-700">Page {page}</span>
 
                 <button onClick={() => setPage(page + 1)}
-                    className="px-5 py-2 rounded-lg font-medium bg-blue-500 text-white hover:bg-blue-600 shadow-md transition">
+                    className="cursor-pointer px-5 py-2 rounded-lg font-medium bg-blue-500 text-white hover:bg-blue-600 shadow-md transition">
                     Next →
                 </button>
 

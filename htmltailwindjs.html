@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-black text-white ">
+    <button class="bg-orange-600 px-2 py-1 mt-20 ml-10 rounded-md">Show Data</button>
+    <div id="abc" class="flex flex-wrap justify-between gap-5 p-10">
+    </div>
+    <script>
+        const showData = () => {
+
+            let stdData = [
+                { name: 'Amit', age: 22, college: 'DU' },
+                { name: 'Neha', age: 24, college: 'IPU' },
+                { name: 'Pooja', age: 23, college: 'MDU' },
+            ];
+
+            let result = stdData.map((v) => {
+                return `
+         <div class="bg-blue-400 rounded-md px-2 py-3 ">
+            <h1><span class="text-black font-bold">Name</span> ${v.name}</h1>
+            <h1><span class="text-black font-bold">Age</span> ${v.age}</h1>
+            <h1><span class="text-black font-bold">College Name</span> ${v.college}</h1>
+        </div>
+        `
+            })
+
+            return result.join('')
+        }
+
+        document.getElementById('abc').innerHTML = showData()
+    </script>
+
+</body>
+
+</html>
