@@ -19,7 +19,7 @@ export default function UserDataApi() {
     console.log(next)
 
     return (
-        <div className="bg-gradient-to-br from-gray-900 to-black min-h-screen text-white p-6">
+        <div className="bg-linear-to-br from-gray-900 to-black min-h-screen text-white p-6">
 
     {/* Header */}
     <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
