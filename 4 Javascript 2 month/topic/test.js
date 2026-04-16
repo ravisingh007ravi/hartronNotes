@@ -1,31 +1,10 @@
-// for loop syntax 
-// for (initialization; condition; increment/decrement) {
-//     code
-// } 
-
-// let n = 9
-
-// for (let i = 1; i <= 10; i++) {
-//   console.log(i*n)
-// }
-
-// let n = 5
-// let sum = 1
-// for (let i = 1; i <= n; i++) {
-//   sum*=i
-// }
-
-// console.log(sum)
-
-let sum = 0
-sum = sum + 1
-sum += 1
-
-sum = sum - 1
-sum -= 1
-
-sum = sum * 1
-sum *= 1   
-
-sum = sum / 1
-sum /= 1
+let str = 'ABC'
+console.log("AA")
+for (let i = 0; i < str.length; i++) {
+    console.log(i, str[i])
+}
+console.log()
+for (let i = str.length-1; i>=0; i--) {
+    console.log(i, str[i])
+}
+console.log("BB")
