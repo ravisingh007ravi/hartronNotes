@@ -2,23 +2,22 @@ import { useState } from 'react'
 import axios from 'axios'
 export default function SignUp() {
   const [values, setValues] = useState({})
-  const SignDB = async(e)=>{
-    try{
+  const SignDB = async (e) => {
+    try {
       e.preventDefault()
-    
-    const res = await axios.post('http://localhost:7070/create-user',values)
-    if(res.status==201 || res.status==200){
-      // console.log(res?.data)
-      alert(res?.data?.msg || 'Created Data')
+
+      const res = await axios.post('http://localhost:7070/create-user', values)
+      if (res.status == 201 || res.status == 200) {
+        alert(res?.data?.msg || 'Created Data')
+      }
     }
-    }
-    catch(err){
+    catch (err) {
       alert(err?.response?.data?.msg || 'Server Stop')
     }
   }
 
-  const pickValue =(e)=>{
-  setValues({...values,[e.target.name]:e.target.value})
+  const pickValue = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value })
   }
 
   return (
@@ -40,7 +39,7 @@ export default function SignUp() {
         </div>
 
         <button>SignUp</button>
-   
+
       </form>
     </div>
   )

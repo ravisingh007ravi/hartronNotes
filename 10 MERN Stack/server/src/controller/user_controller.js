@@ -1,41 +1,38 @@
-import user_model from '../model/user_model.js';
+import user_model from '../model/user_model.js'
 
-export const create_user = async(req, res) => {
-    try {
+export const register = async (req, res) => {
+    try{
+        const data = req.body 
 
-        const data = req.body
-        
+        const {name,email,password,gender} = data 
+
+        if(!name) return res.status(400).send({status: false, sucess:false, message: "Name is Required"})
+        if(!email) return res.status(400).send({status: false, sucess:false, message: "Email is Required"})
+        if(!password) return res.status(400).send({status: false, sucess:false, message: "Password is Required"})
+
         const DB = await user_model.create(data)
-
-     res.send({ status: true, msg: 'User created successfully',data:DB })
+        res.status(200).send({ status: true, sucess:true, message: "User Created Successfully", data: DB})
     }
-    catch (e) { res.status(500).send({ status: false, msg: e.message }) }
+    catch(err){res.status(500).send({status:false,msg:err.message});}
 }
 
-export const verify_user = (req, res) => {
-    try {
+export const verify_otp = async (req, res) => {
+    try{
 
     }
-    catch (e) { res.status(500).send({ status: false, msg: e.message }) }
+    catch(err){console.log(err.message);}
 }
 
-export const login_user = (req, res) => {
-    try {
+export const loh_in = async (req, res) => {
+    try{
 
     }
-    catch (e) { res.status(500).send({ status: false, msg: e.message }) }
+    catch(err){console.log(err.message);}
 }
 
-export const updated_profile_img = (req, res) => {
-    try {
-
-    }
-    catch (e) { res.status(500).send({ status: false, msg: e.message }) }
-}
-
-export const user_updated_info = (req, res) => {
-    try {
-
-    }
-    catch (e) { res.status(500).send({ status: false, msg: e.message }) }
-}
+// status code 
+// 201 create new data
+// 200 ok
+// 400 bad request by user side
+// 404 not found
+// 500 internal server error

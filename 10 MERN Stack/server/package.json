@@ -1,16 +1,24 @@
 {
-  "name": "bakcend",
+  "name": "batch1_mern_server",
   "version": "1.0.0",
-  "description": "",
-  "license": "ISC",
-  "author": "",
-  "type": "module",
+  "description": "this is my first backend Project",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon src/index.js",
     "dev": "npx nodemon src/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravisingh007ravi/batch1_MERN_server.git"
+  },
+  "author": "Ravi Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ravisingh007ravi/batch1_MERN_server/issues"
+  },
+  "homepage": "https://github.com/ravisingh007ravi/batch1_MERN_server#readme",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
