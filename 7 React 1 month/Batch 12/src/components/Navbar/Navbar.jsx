@@ -12,7 +12,6 @@ export default function Navbar() {
         { name: "Contact", icons: <FaHome />, dir: "/" },
         { name: "Blog", icons: <FaHome />, dir: "/" },
     ]
-    let a = 'home'
     return (
         <div>
             <nav className='flex items-center justify-between bg-gray-400 shadow-lg py-2 px-10'>
