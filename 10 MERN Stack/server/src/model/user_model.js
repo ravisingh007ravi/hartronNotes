@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
             otp:{type: Number, default: null},
             isVerify:{type: Boolean, default: false},           
         }
-    }
+    } 
 })
 
 export default mongoose.model('User', UserSchema)
