@@ -19,7 +19,7 @@ export default function Navbar() {
                 {/* logo  */}
                 <h1>Logo</h1>
 
-                {/* Menu Bar  */}
+                {/* Menu Bar  */}  
                 <ul className='flex items-center gap-5'>
 
                     {
