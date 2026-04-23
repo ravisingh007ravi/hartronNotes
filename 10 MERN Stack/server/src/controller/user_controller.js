@@ -1,5 +1,6 @@
 import user_model from '../model/user_model.js'
 import { validEmail, validName, validPassword } from '../validation/allValidation.js'
+import { user_otp_verification_send } from '../mail/userMail.js'
 export const register = async (req, res) => {
     try {
         const data = req.body
@@ -8,7 +9,7 @@ export const register = async (req, res) => {
 
         if (!email) return res.status(400).send({ status: false, sucess: false, message: "Email is Required" })
         if (!validEmail(email)) return res.status(400).send({ status: false, sucess: false, message: "Invalid email" })
-      
+
         const checkUser = await user_model.findOne({ email: email })
         if (checkUser) return res.status(400).send({ status: false, sucess: false, message: "User Already Present" })
 
@@ -18,6 +19,8 @@ export const register = async (req, res) => {
 
         if (!password) return res.status(400).send({ status: false, sucess: false, message: "Password is Required" })
         if (!validPassword(password)) return res.status(400).send({ status: false, sucess: false, message: "Invalid password" })
+
+        user_otp_verification_send(email, name, 9999)
 
         const DB = await user_model.create(data)
         res.status(200).send({ status: true, sucess: true, message: "User Created Successfully", data: DB })
