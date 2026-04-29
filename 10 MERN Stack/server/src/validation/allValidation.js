@@ -12,3 +12,12 @@ export const validPassword  = (password)=>{
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
     return passwordRegex.test(password)
 }
+
+
+export const validgender  = (gender)=>{
+    if(gender === 'male' || gender === 'female' || gender === 'other'){
+        return true
+    }
+    return false
+}
+
