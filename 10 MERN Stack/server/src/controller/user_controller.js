@@ -2,6 +2,7 @@ import user_model from '../model/user_model.js'
 import { user_otp_verification_send } from '../mail/userMail.js'
 import { error } from '../error/allErrorHandling.js'
 import crypto from 'crypto'
+
 export const register = async (req, res) => {
     try {
         const data = req.body
@@ -32,28 +33,31 @@ export const register = async (req, res) => {
     catch (e) { error(e, res) }
 }
  
+
 export const verify_otp = async (req, res) => {
     try {
-        const { id } = req.params 
-        const userotp = req.body.userotp
+        const { id } = req.params;
+        const { userotp } = req.body;
 
-        if (!userotp) return res.status(404).send({ status: false, msg: "pls Provide opt" })
+        if (!userotp) return res.status(400).send({ status: false, msg: "Please provide OTP" });
 
-        const checkUser = await user_model.findById(id)
-        if (!checkUser) return res.status(404).send({ status: false, msg: "user not found" })
+        const user = await user_model.findOneAndUpdate(
+            {
+                _id: id,
+                "verification.user.otp": userotp,
+                "verification.user.otpExpireTime": { $gte: Date.now() },
+                "verification.user.isVerify": false
+            },
+            {$set: { "verification.user.isVerify": true }}
+        );
 
-        const { otp, otpExpireTime } = checkUser.verification.user
+        if (!user) return res.status(400).send({status: false, 
+            msg: "Invalid OTP or OTP expired or already verified"});
         
-        if (!(Date.now() <= otpExpireTime)) return res.status(400).send({ status: false, msg: "otp Expire" })
-
-        if (otp != userotp) return res.status(400).send({ status: false, msg: "wrong otp" })
-
-        await user_model.findByIdAndUpdate(id, { $set: { 'verification.user.isVerify': true } })
-
-        res.status(200).send({ status: true, msg: 'Otp Verify Sucessfully' })
-    }
-    catch (e) { { error(e, res) } }
-}
+        return res.status(200).send({status: true,msg: "OTP verified successfully"});
+    } 
+    catch (e) {error(e, res);}
+};
 
 export const loh_in = async (req, res) => {
     try {
