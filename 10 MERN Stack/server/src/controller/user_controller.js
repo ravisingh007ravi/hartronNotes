@@ -9,14 +9,18 @@ export const register = async (req, res) => {
         const { name, email, password, gender } = data
 
         const randomOtp = crypto.randomInt(1000, 9999)
-        const expirtTime = new Date.now() + 1000 * 60 * 5
+        const expirtTime = Date.now() + 1000 * 60 * 5
 
         const checkUser = await user_model.findOneAndUpdate(
-            { email: email, 'verification.user.isVerify': false },
+            { email: email },
             { $set: { 'verification.user.otp': randomOtp, 'verification.user.otpExpireTime': expirtTime } }
         )
 
-        if (checkUser) return res.status(200).send({ status: true, msg: "resent Otp Send" })
+        if (checkUser) {
+            if (checkUser.verification.user.isVerify) return res.status(400).send({ status: true, msg: 'Account Already verify pls log In' })
+            ser_otp_verification_send(email, checkUser.name, randomOtp)
+            return res.status(200).send({ status: true, msg: "resent Otp Send" })
+        }
 
         const DBData = {
             name, email, gender, password, verification: { user: { otp: randomOtp, otpExpireTime: expirtTime } }
@@ -27,10 +31,26 @@ export const register = async (req, res) => {
     }
     catch (e) { error(e, res) }
 }
-
+ 
 export const verify_otp = async (req, res) => {
     try {
+        const { id } = req.params 
+        const userotp = req.body.userotp
 
+        if (!userotp) return res.status(404).send({ status: false, msg: "pls Provide opt" })
+
+        const checkUser = await user_model.findById(id)
+        if (!checkUser) return res.status(404).send({ status: false, msg: "user not found" })
+
+        const { otp, otpExpireTime } = checkUser.verification.user
+        
+        if (!(Date.now() <= otpExpireTime)) return res.status(400).send({ status: false, msg: "otp Expire" })
+
+        if (otp != userotp) return res.status(400).send({ status: false, msg: "wrong otp" })
+
+        await user_model.findByIdAndUpdate(id, { $set: { 'verification.user.isVerify': true } })
+
+        res.status(200).send({ status: true, msg: 'Otp Verify Sucessfully' })
     }
     catch (e) { { error(e, res) } }
 }

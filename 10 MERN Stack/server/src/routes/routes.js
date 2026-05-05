@@ -5,7 +5,7 @@ const route = express.Router()
 
 // User Routes
 route.post('/user/register', register)
-route.post('/user/verify_otp', verify_otp)
+route.post('/user/verify_otp/:id', verify_otp)
 route.post('/user/loh_in', loh_in)
 
 

@@ -4,14 +4,22 @@ import bcrypt from 'bcrypt'
 
 const UserSchema = new mongoose.Schema({
     profileImg: { type: Object, required: false },
-    name: { type: String, required: [true, 'Name is required'], 
-        validate: [validName, 'Invalid name'], trim: true },
-    email: { type: String, required: [true, 'Email is required'], 
-        validate: [validEmail, 'Invalid Email'], trim: true, unique: true, lowercase: true },
-    password: { type: String, required: [true, 'Password is required'], 
-        validate: [validPassword, 'Invalid password'], trim: true },
-    gender: { type: String, enum: ['male', 'female', 'other'], required: [true, 'Gender is required'], 
-        validate: [validgender, 'Invalid Gender'], trim: true },
+    name: {
+        type: String, required: [true, 'Name is required'],
+        validate: [validName, 'Invalid name'], trim: true
+    },
+    email: {
+        type: String, required: [true, 'Email is required'],
+        validate: [validEmail, 'Invalid Email'], trim: true, unique: true, lowercase: true
+    },
+    password: {
+        type: String, required: [true, 'Password is required'],
+        validate: [validPassword, 'Invalid password'], trim: true
+    },
+    gender: {
+        type: String, enum: ['male', 'female', 'other'], required: [true, 'Gender is required'],
+        validate: [validgender, 'Invalid Gender'], trim: true
+    },
     verification: {
         user: {
             isVerify: { type: Boolean, default: false },
@@ -27,9 +35,5 @@ const UserSchema = new mongoose.Schema({
         }
     }
 })
-
-UserSchema.pre('save', async function(next) {
-    this.password = await bcrypt.hash(this.password, salt)
-    next()
-})
+UserSchema.pre('save', async function () { this.password = await bcrypt.hash(this.password, 10) })
 export default mongoose.model('User', UserSchema)
