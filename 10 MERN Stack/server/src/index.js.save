@@ -5,7 +5,14 @@ import mongoose from 'mongoose';
 import routes from './routes/routes.js';
 const app = express();
 dotenv.config();
- 
+export const loh_in = async (req, res) => {
+    try {
+        const { email, password } = req.body
+
+        const checkUser = await user_model.findOne({ email: email })
+        if (!checkUser) return res.status(404).send({ status: false, msg: 'user not found' })
+
+        if (checkUser) { 
 app.use(cors());
 app.use(express.json());
  

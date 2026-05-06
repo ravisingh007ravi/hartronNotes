@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-
-<body>
-    <main class="flex">
+<body class="bg-black text-white">
+    <main class="flex flex-col justify-between h-screen items-center">
         <!-- top -->
-        <div class="flex top">
+        <div class="flex w-full justify-between py-5 px-10">
             <!-- left  -->
-            <div class="flex gap-2">
+            <div class="flex gap-5 items-center">
                 <h4>About</h4>
                 <h4>Store</h4>
             </div>
             <!-- right  -->
-            <div class="flex gap-2">
+            <div class="flex gap-5 items-center">
                 <h4>Gmail</h4>
                 <h4>Images</h4>
                 <i class="fa-solid fa-flask"></i>
@@ -30,39 +30,39 @@
             </div>
         </div>
         <!-- center -->
-        <div class="center flex"> 
-            <h4 style="font-size: 60px;">Google</h4>
+        <div class="flex flex-col items-center gap-5"> 
+            <h4 class=" text-8xl">Google</h4>
             <!-- search  -->
-            <div class="search flex gap-2">
+            <div class="flex bg-gray-400 items-center gap-3 py-3 px-5 rounded-full mt-5">
                 <i class="fa-solid fa-plus"></i>
-                <input type="text">
+                <input class="w-120 border-none outline-none" type="text">
                 <i class="fa-solid fa-microphone"></i>
                 <i class="fa-regular fa-camera"></i>
-                <div class="flex ">
+                <div class=" flex items-center gap-2 bg-orange-500 py-2 px-4 rounded-full hover:bg-orange-900">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <h4>AI Mode</h4>
                 </div>
             </div>
             <!-- button search -->
-            <div class="flex gap-2">
-                <button>Google Search</button>
-                <button>I am Feeling Luckcy</button>
+            <div class="flex gap-5">
+                <button class="bg-gray-700 py-3 px-5 rounded-lg">Google Search</button>
+                <button class="bg-gray-700 py-3 px-5 rounded-lg">I am Feeling Luckcy</button>
             </div>
         </div>
         <!-- bottom -->
-        <div class="bottom">
+        <div class="flex flex-col w-full gap-3">
             <!-- top  -->
-            <h4>India</h4>
+            <h4 class=" px-5">India</h4>
             <hr>
-            <div class="flex footer">
+            <div class="flex justify-between  px-5">
                 <!-- left  -->
-                <div class="flex gap-2">
+                <div class="flex gap-4 ">
                     <h4>Advertising</h4>
                     <h4>Busniness</h4>
                     <h4>How Search Work</h4>
                 </div>
                 <!-- right  -->
-                <div class="flex gap-2">
+                <div class="flex gap-4">
                     <h4>Privacy</h4>
                     <h4>Term</h4>
                     <h4>Setting</h4>

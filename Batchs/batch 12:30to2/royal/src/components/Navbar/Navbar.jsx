@@ -12,13 +12,13 @@ export default function Navbar() {
     ]
   return (
     <div>
-      <nav className="flex fixed w-full justify-between items-center  px-10">
+      <nav className="flex fixed w-full justify-between items-center  px-10 z-10">
         <img className="lg:h-25 md:h-20 sm:h-20 h-15 " src={logo} alt="logo" />
 
         <ul className="lg:flex gap-20 hidden">
            {
             MENUDATA.map((v,i)=>(
-                 <a href={v.link}>
+                 <a key={i} href={v.link}>
                 <li className="text-white flex flex-col items-center">
                     <img src={v.icons} alt="" />
                     <h1>{v.name}</h1>
