@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-    FaSearch, 
-    FaShoppingCart, 
-    FaUser, 
-    FaBars, 
-    FaTimes, 
-    FaSun, 
+import {
+    FaSearch,
+    FaShoppingCart,
+    FaUser,
+    FaBars,
+    FaTimes,
+    FaSun,
     FaMoon,
     FaThLarge,
     FaMugHot,
@@ -19,22 +19,22 @@ import {
     FaTshirt
 } from "react-icons/fa";
 import logo from '../../assets/logo.png'
-
+import { useTheme } from '../../context/DarkAndLight.jsx'
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeCategory, setActiveCategory] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
-
+    const {  toggleTheme } = useTheme();
     const MENUDATA = [
-        {icon: <FaThLarge />, name: 'All', slug: 'all'},
-        {icon: <FaMugHot />, name: 'Cafe', slug: 'cafe'},
-        {icon: <FaHome />, name: 'Home', slug: 'home'},
-        {icon: <FaGamepad />, name: 'Toys', slug: 'toys'},
-        {icon: <FaAppleAlt />, name: 'Fresh', slug: 'fresh'},
-        {icon: <FaMicrochip />, name: 'Electronics', slug: 'electronics'},
-        {icon: <FaMobileAlt />, name: 'Mobile', slug: 'mobile'},
-        {icon: <FaGem />, name: 'Beauty', slug: 'beauty'},
-        {icon: <FaTshirt />, name: 'Fashion', slug: 'fashion'},
+        { icon: <FaThLarge />, name: 'All', slug: 'all' },
+        { icon: <FaMugHot />, name: 'Cafe', slug: 'cafe' },
+        { icon: <FaHome />, name: 'Home', slug: 'home' },
+        { icon: <FaGamepad />, name: 'Toys', slug: 'toys' },
+        { icon: <FaAppleAlt />, name: 'Fresh', slug: 'fresh' },
+        { icon: <FaMicrochip />, name: 'Electronics', slug: 'electronics' },
+        { icon: <FaMobileAlt />, name: 'Mobile', slug: 'mobile' },
+        { icon: <FaGem />, name: 'Beauty', slug: 'beauty' },
+        { icon: <FaTshirt />, name: 'Fashion', slug: 'fashion' },
     ]
 
     return (
@@ -43,15 +43,15 @@ export default function Navbar() {
                 {/* Main Top Section */}
                 <div className="flex items-center justify-between py-3 gap-2 sm:gap-4 md:gap-6">
                     {/* Logo Section */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         className="flex items-center gap-1.5 sm:gap-2 cursor-pointer group shrink-0"
                     >
-                        <img 
-                            src={logo} 
-                            alt="PureBuy Logo" 
-                            className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 object-contain" 
+                        <img
+                            src={logo}
+                            alt="PureBuy Logo"
+                            className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 object-contain"
                         />
                         <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-linear-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
                             PureBuy
@@ -76,12 +76,14 @@ export default function Navbar() {
                     <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-4">
                         {/* Theme Toggle */}
                         <motion.button
+                            onClick={toggleTheme}
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             className="p-1.5 sm:p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
                         >
-                            <FaSun className="text-yellow-500 dark:hidden text-sm sm:text-base lg:text-lg" />
-                            <FaMoon className="hidden dark:block text-gray-300 text-sm sm:text-base lg:text-lg" />
+                                <FaSun className="text-yellow-500 dark:hidden text-sm sm:text-base lg:text-lg" />
+                                <FaMoon className="hidden dark:block text-gray-300 text-sm sm:text-base lg:text-lg" />
+                            
                         </motion.button>
 
                         {/* Login Button - Tablet and up */}
@@ -114,8 +116,8 @@ export default function Navbar() {
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="md:hidden p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
                         >
-                            {isMobileMenuOpen ? 
-                                <FaTimes className="text-lg sm:text-xl text-gray-700 dark:text-gray-300" /> : 
+                            {isMobileMenuOpen ?
+                                <FaTimes className="text-lg sm:text-xl text-gray-700 dark:text-gray-300" /> :
                                 <FaBars className="text-lg sm:text-xl text-gray-700 dark:text-gray-300" />
                             }
                         </motion.button>
@@ -138,25 +140,24 @@ export default function Navbar() {
 
                 {/* Categories Section - Desktop Horizontal Scroll */}
                 <div className="hidden md:flex items-center gap-1 lg:gap-2 py-3 overflow-x-auto scrollbar-hide border-t border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
-                    {MENUDATA.map((item,index) => (
-                      <a key={index} href={item.slug}>
-                          <motion.button
-                            key={item.name}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => setActiveCategory(item.slug)}
-                            className={`flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg font-medium whitespace-nowrap transition-all duration-300 text-sm lg:text-base ${
-                                activeCategory === item.slug
-                                    ? 'bg-green-600 text-white shadow-md'
-                                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 dark:hover:text-green-400'
-                            }`}
-                        >
-                            <span className={`text-sm lg:text-base ${activeCategory === item.slug ? 'text-white' : 'text-green-600 dark:text-green-400'}`}>
-                                {item.icon}
-                            </span>
-                            {item.name}
-                        </motion.button>
-                      </a>
+                    {MENUDATA.map((item, index) => (
+                        <a key={index} href={item.slug}>
+                            <motion.button
+                                key={item.name}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => setActiveCategory(item.slug)}
+                                className={`flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg font-medium whitespace-nowrap transition-all duration-300 text-sm lg:text-base ${activeCategory === item.slug
+                                        ? 'bg-green-600 text-white shadow-md'
+                                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 dark:hover:text-green-400'
+                                    }`}
+                            >
+                                <span className={`text-sm lg:text-base ${activeCategory === item.slug ? 'text-white' : 'text-green-600 dark:text-green-400'}`}>
+                                    {item.icon}
+                                </span>
+                                {item.name}
+                            </motion.button>
+                        </a>
                     ))}
                 </div>
 
@@ -172,7 +173,7 @@ export default function Navbar() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
                             />
-                            
+
                             {/* Mobile Menu Panel */}
                             <motion.div
                                 initial={{ x: '100%' }}
@@ -213,28 +214,27 @@ export default function Navbar() {
                                 <div className="p-4">
                                     <h3 className="text-lg font-semibold mb-3 text-gray-800 dark:text-white">Categories</h3>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {MENUDATA.map((item,i) => (
-                                           <a key={i} href={item.slug}>
-                                             <motion.button
-                                                key={item.name}
-                                                whileHover={{ scale: 1.02 }}
-                                                whileTap={{ scale: 0.98 }}
-                                                onClick={() => {
-                                                    setActiveCategory(item.slug);
-                                                    setIsMobileMenuOpen(false);
-                                                }}
-                                                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 text-sm ${
-                                                    activeCategory === item.slug
-                                                        ? 'bg-green-600 text-white'
-                                                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                                                }`}
-                                            >
-                                                <span className={`text-base ${activeCategory === item.slug ? 'text-white' : 'text-green-600 dark:text-green-400'}`}>
-                                                    {item.icon}
-                                                </span>
-                                                {item.name}
-                                            </motion.button>
-                                           </a>
+                                        {MENUDATA.map((item, i) => (
+                                            <a key={i} href={item.slug}>
+                                                <motion.button
+                                                    key={item.name}
+                                                    whileHover={{ scale: 1.02 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                    onClick={() => {
+                                                        setActiveCategory(item.slug);
+                                                        setIsMobileMenuOpen(false);
+                                                    }}
+                                                    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 text-sm ${activeCategory === item.slug
+                                                            ? 'bg-green-600 text-white'
+                                                            : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                                        }`}
+                                                >
+                                                    <span className={`text-base ${activeCategory === item.slug ? 'text-white' : 'text-green-600 dark:text-green-400'}`}>
+                                                        {item.icon}
+                                                    </span>
+                                                    {item.name}
+                                                </motion.button>
+                                            </a>
                                         ))}
                                     </div>
                                 </div>
