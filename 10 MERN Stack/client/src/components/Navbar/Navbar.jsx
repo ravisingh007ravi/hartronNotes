@@ -20,6 +20,7 @@ import {
 } from "react-icons/fa";
 import logo from '../../assets/logo.png'
 import { useTheme } from '../../context/DarkAndLight.jsx'
+import { Link } from 'react-router-dom';
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeCategory, setActiveCategory] = useState('all');
@@ -43,6 +44,7 @@ export default function Navbar() {
                 {/* Main Top Section */}
                 <div className="flex items-center justify-between py-3 gap-2 sm:gap-4 md:gap-6">
                     {/* Logo Section */}
+                    <Link to="/">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -56,7 +58,7 @@ export default function Navbar() {
                         <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-linear-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
                             PureBuy
                         </h1>
-                    </motion.div>
+                    </motion.div></Link>
 
                     {/* Search Bar - Tablet and up */}
                     <div className="hidden md:flex flex-1 max-w-xs lg:max-w-md xl:max-w-lg 2xl:max-w-xl mx-2 lg:mx-4">
@@ -87,6 +89,7 @@ export default function Navbar() {
                         </motion.button>
 
                         {/* Login Button - Tablet and up */}
+                        <Link to='/login'>
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -95,6 +98,7 @@ export default function Navbar() {
                             <FaUser className="text-xs lg:text-sm" />
                             <span>Login</span>
                         </motion.button>
+                        </Link>
 
                         {/* Cart Button */}
                         <motion.button
@@ -141,7 +145,7 @@ export default function Navbar() {
                 {/* Categories Section - Desktop Horizontal Scroll */}
                 <div className="hidden md:flex items-center gap-1 lg:gap-2 py-3 overflow-x-auto scrollbar-hide border-t border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
                     {MENUDATA.map((item, index) => (
-                        <a key={index} href={item.slug}>
+                        <Link key={index} to={`/product/${item.slug}`}>
                             <motion.button
                                 key={item.name}
                                 whileHover={{ scale: 1.05 }}
@@ -157,7 +161,7 @@ export default function Navbar() {
                                 </span>
                                 {item.name}
                             </motion.button>
-                        </a>
+                        </Link>
                     ))}
                 </div>
 
@@ -215,7 +219,7 @@ export default function Navbar() {
                                     <h3 className="text-lg font-semibold mb-3 text-gray-800 dark:text-white">Categories</h3>
                                     <div className="grid grid-cols-2 gap-2">
                                         {MENUDATA.map((item, i) => (
-                                            <a key={i} href={item.slug}>
+                                            <Link key={i} to={item.slug}>
                                                 <motion.button
                                                     key={item.name}
                                                     whileHover={{ scale: 1.02 }}
@@ -234,7 +238,7 @@ export default function Navbar() {
                                                     </span>
                                                     {item.name}
                                                 </motion.button>
-                                            </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>
