@@ -10,3 +10,6 @@ for (let i = s; i <= e; i++) {
         console.log(i)
     }
 } 
+console.log('hii');
+
+console.log('fff');
