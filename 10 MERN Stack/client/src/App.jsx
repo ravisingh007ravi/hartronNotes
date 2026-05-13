@@ -5,7 +5,7 @@ import Footer from './components/Footer.jsx'
 import Product from './components/product/Product.jsx'
 import Signup from './components/Auth/Signup.jsx'
 import Login from './components/Auth/Log.jsx'
-
+import OTP from './components/OtpVerification.jsx'
 export default function App() {
   return (
     <BrowserRouter>
@@ -15,6 +15,7 @@ export default function App() {
         <Route path='/product/:product-name' element={<Product />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/otp-verification/:id' element={<OTP />} />
       </Routes>
       <Footer />
     </BrowserRouter>

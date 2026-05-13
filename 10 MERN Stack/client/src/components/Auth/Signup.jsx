@@ -3,11 +3,15 @@ import { useFormik } from 'formik';
 import { FaGoogle, FaApple, FaEye, FaEyeSlash, FaUser, FaEnvelope, FaLock, FaVenusMars, FaCheckCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import { validationSchema } from './Validation';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import {showErrorToast,showSuccessToast} from '../notification/Tost'
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoadiing] = useState(false);
+  
+  const Navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
@@ -19,7 +23,24 @@ export default function Signup() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log('Form data:', values);
+      try{
+        
+        setLoadiing(true)
+        const res = await axios.post('http://localhost:5000/user/register',values)
+      const id = res?.data?.db?.id
+   
+      if(res.status==200 || res.status==201){
+        
+        showSuccessToast(res.data.msg || 'Sucessfully Create Account')
+        Navigate(`/otp-verification/${id}`)
+      }
+      }
+      catch(err){
+        showErrorToast('server')
+      }
+      finally{
+        setLoadiing(false)
+      }
     },
   });
 
@@ -221,7 +242,10 @@ export default function Signup() {
               type="submit"
               className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transform hover:scale-105 transition duration-300 shadow-md"
             >
-              Sign Up
+              {
+                loading?'Loding...':'Sign Up'
+              }
+              
             </button>
           </form>
 

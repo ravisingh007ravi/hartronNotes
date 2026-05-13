@@ -10,7 +10,7 @@ dotenv.config()
 export const register = async (req, res) => {
     try {
         const data = req.body
-
+        console.log(data);
         const { name, email, password, gender } = data
 
         const randomOtp = crypto.randomInt(1000, 9999)
@@ -32,8 +32,11 @@ export const register = async (req, res) => {
             name, email, gender, password, verification: { user: { otp: randomOtp, otpExpireTime: expirtTime } }
         }
         const DB = await user_model.create(DBData)
+        const db = {
+            name:DB.name,email:DB.email,id:DB._id, img: DB.profileImg
+        }
         user_otp_verification_send(email, name, randomOtp)
-        res.status(200).send({ status: true, sucess: true, message: "User Created Successfully", data: DB })
+        res.status(201).send({ status: true, sucess: true, msg: "User Created Successfully", db })
     }
     catch (e) { error(e, res) }
 }
