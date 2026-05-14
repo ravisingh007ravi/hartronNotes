@@ -43,7 +43,14 @@
 
 // 3. Comparison Operators (==, ===, !=, !==, >, <, >=, <=)
 
-a = 20
-b = 10
-console.log(a !== b); // compare only value not data type
-console.log(a === b); // compare both value and data type
+// a = 20
+// b = 10
+// console.log(a !== b); // compare only value not data type
+// console.log(a === b); // compare both value and data type
+
+
+// and (&&) => all condition true then output true if any one condition false output false
+// or reverse and
+
+
+console.log(10>20 || 20>5 && 2>0);

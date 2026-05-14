@@ -1,15 +1,10 @@
-import express from 'express';
-import { aa } from '../controller/user_controller.js'
+import express from 'express'
+import {create_user} from '../controller/user_contrller.js'
 const router = express.Router()
 
 
-router.get('/api', aa)
+
+router.get('/user', create_user)
 
 
-export default router;
-
-// api use CRUD operations
-// C - create (Post)
-// R - read (Get)
-// U - update (Put)
-// D - delete (Delete)
+export default router 
