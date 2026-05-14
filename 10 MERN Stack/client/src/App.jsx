@@ -17,7 +17,7 @@ export default function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/otp-verification/:id' element={<OTP />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   )
 }

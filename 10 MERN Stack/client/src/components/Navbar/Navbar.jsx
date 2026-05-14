@@ -39,7 +39,7 @@ export default function Navbar() {
     ]
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900 shadow-md transition-colors duration-300">
+        <header className="fixed top-0 z-50 w-full bg-white dark:bg-gray-900 shadow-md transition-colors duration-300">
             <nav className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
                 {/* Main Top Section */}
                 <div className="flex items-center justify-between py-3 gap-2 sm:gap-4 md:gap-6">

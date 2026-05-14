@@ -6,6 +6,7 @@ import { validationSchema } from './Validation';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {showErrorToast,showSuccessToast} from '../notification/Tost'
+import {local} from '../../ApiUrl.js'
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -26,7 +27,7 @@ export default function Signup() {
       try{
         
         setLoadiing(true)
-        const res = await axios.post('http://localhost:5000/user/register',values)
+        const res = await axios.post(`${local}user/register`,values)
       const id = res?.data?.db?.id
    
       if(res.status==200 || res.status==201){
@@ -109,20 +110,20 @@ export default function Signup() {
       onClick: handleGoogleLogin,
       iconClass: 'text-red-500',
     },
-    {
-      id: 'apple',
-      icon: FaApple,
-      label: 'Sign up with Apple',
-      onClick: handleAppleLogin,
-      iconClass: 'text-black',
-    },
+    // {
+    //   id: 'apple',
+    //   icon: FaApple,
+    //   label: 'Sign up with Apple',
+    //   onClick: handleAppleLogin,
+    //   iconClass: 'text-black',
+    // },
   ];
 
   const passwordsMatch = formik.values.password && formik.values.confirmPassword && 
                         formik.values.password === formik.values.confirmPassword;
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 pt-30">
       <div className="max-w-6xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
         
         {/* Left Side - Image */}
@@ -138,7 +139,6 @@ export default function Signup() {
         <div className="md:w-1/2 p-8 lg:p-12 bg-white">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
-            <p className="text-gray-600">Join us today and start your journey</p>
           </div>
 
           <form onSubmit={formik.handleSubmit} className="space-y-5">

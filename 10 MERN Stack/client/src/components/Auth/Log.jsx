@@ -1,40 +1,44 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { FaGoogle, FaApple, FaEye, FaEyeSlash, FaUser, FaEnvelope, FaLock, FaVenusMars, FaCheckCircle } from 'react-icons/fa';
+import { FaGoogle, FaApple, FaEye, FaEyeSlash, FaEnvelope, FaLock } from 'react-icons/fa';
 import { useState } from 'react';
-import {validationSchema} from './Validation'
-import {Link} from 'react-router-dom'
+import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
-export default function Signup() {
+// Login validation schema
+const loginValidationSchema = Yup.object({
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+  password: Yup.string()
+    .required('Password is required'),
+});
+
+export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const formik = useFormik({initialValues: {
-      name: '',
+  const formik = useFormik({
+    initialValues: {
       email: '',
       password: '',
-      confirmPassword: '',
-      gender: '',
     },
-    validationSchema: validationSchema,
+    validationSchema: loginValidationSchema,
     onSubmit: async (values) => {
-      console.log('Form data:', values);
-      
+      console.log('Login data:', values);
+      // Add your login logic here
     },
   });
 
   const handleGoogleLogin = () => {
     console.log('Login with Google');
-    
   };
 
   const handleAppleLogin = () => {
     console.log('Login with Apple');
-    
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div className="h-screen bg-gray-100 flex items-center justify-center p-4 pt-40">
       <div className="max-w-6xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
         
         {/* Left Side - Image */}
@@ -46,16 +50,14 @@ export default function Signup() {
           />
         </div>
 
-        {/* Right Side - Signup Form */}
+        {/* Right Side - Login Form */}
         <div className="md:w-1/2 p-8 lg:p-12 bg-white">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
-            <p className="text-gray-600">Join us today and start your journey</p>
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
+            <p className="text-gray-600">Login to continue your journey</p>
           </div>
 
           <form onSubmit={formik.handleSubmit} className="space-y-5">
-          
-
             {/* Email Field */}
             <div>
               <label className="block text-gray-700 text-sm font-semibold mb-2">
@@ -111,20 +113,21 @@ export default function Signup() {
               {formik.touched.password && formik.errors.password && (
                 <p className="text-red-500 text-xs mt-1">{formik.errors.password}</p>
               )}
-              <p className="text-gray-500 text-xs mt-1">
-                Password must contain at least 8 characters, one uppercase, one lowercase, and one number
-              </p>
             </div>
 
-          
-           
+            {/* Forgot Password Link */}
+            <div className="text-right">
+              <Link to="/forgot-password" className="text-sm text-green-600 hover:text-green-700 transition duration-300">
+                Forgot Password?
+              </Link>
+            </div>
 
             {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transform hover:scale-105 transition duration-300 shadow-md"
             >
-              Log-In
+              Log In
             </button>
           </form>
 
@@ -145,7 +148,7 @@ export default function Signup() {
               className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-300"
             >
               <FaGoogle className="text-red-500 text-xl" />
-              <span className="font-medium text-gray-700">Sign up with Google</span>
+              <span className="font-medium text-gray-700">Login with Google</span>
             </button>
 
             <button
@@ -153,14 +156,14 @@ export default function Signup() {
               className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-300"
             >
               <FaApple className="text-black text-xl" />
-              <span className="font-medium text-gray-700">Sign up with Apple</span>
+              <span className="font-medium text-gray-700">Login with Apple</span>
             </button>
           </div>
 
-          {/* Login Link */}
+          {/* Sign Up Link */}
           <div className="mt-6 text-center">
             <p className="text-gray-600">
-              Already have an account?{' '}
+              Don't have an account?{' '}
               <Link to="/signup" className="text-green-600 font-semibold hover:text-green-700 transition duration-300">
                 Sign Up
               </Link>
