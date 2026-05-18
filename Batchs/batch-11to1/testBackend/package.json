@@ -1,0 +1,20 @@
+{
+  "name": "testbackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon src/server",
+    "dev": "npx nodemon src/server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.6.2",
+    "nodemon": "^3.1.14"
+  }
+}
