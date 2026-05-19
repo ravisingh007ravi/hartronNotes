@@ -12,7 +12,6 @@ if (aadharcard) {
         else if (city == 'panipat') console.log('panipat vote done');
 
         else console.log('Invalid city');
-        
     }
     else console.log('Invalid age');
     

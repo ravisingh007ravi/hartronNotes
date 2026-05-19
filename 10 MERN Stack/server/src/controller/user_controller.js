@@ -55,7 +55,7 @@ export const verify_otp = async (req, res) => {
         const { otp, otpExpireTime } = checkUser.verification.user
 
         if (!(Date.now() <= otpExpireTime)) return res.status(400).send({ status: false, msg: "otp Expire" })
-
+           
         if (otp != userotp) return res.status(400).send({ status: false, msg: "wrong otp" })
 
         await user_model.findByIdAndUpdate(id, { $set: { 'verification.user.isVerify': true } })
@@ -92,7 +92,7 @@ export const loh_in = async (req, res) => {
 
         if (checkUser) {
             const { isVerify, isDelete, block } = checkUser.verification.user
-            if (!isVerify) return res.status(404).send({ status: false, msg: 'pls verify otp' })
+            if (!isVerify) return res.status(404).send({ status: false, msg: 'pls verify otp',id:checkUser._id })
             if (isDelete) return res.status(404).send({ status: false, msg: 'Account is Delete' })
             if (block) return res.status(404).send({ status: false, msg: 'Your Account is block by Admin' })
         }
@@ -102,7 +102,7 @@ export const loh_in = async (req, res) => {
 
         const token = jwt.sign({id:checkUser._id},process.env.UserTokenKey,{expiresIn:'1d'})
 
-        res.status(200).send({status:true,msg:'logIn Succ',token,id:checkUser._id})  
+        res.status(200).send({status:true,msg:'log in Successfully User',token,id:checkUser._id})  
     }
     catch (e) { error(e, res) }
 }

@@ -1,15 +1,9 @@
-// i = i+1
-// for (let i = 1; i <= 10; i+=5) {
-//     console.log(i)
-// }
-let s = 7
-let e = 16
+let a = 20
+let b = 30
+let c = 40
 
-for (let i = s; i <= e; i++) {
-    if (i % 2 == 1) {
-        console.log(i)
-    }
-} 
-console.log('hii');
+let result = a > b && a > c ? "A" : b > a && b > c ? "B" : "C"
 
-console.log('fff');
+
+console.log(result);
+// a > b && console.log('AA');

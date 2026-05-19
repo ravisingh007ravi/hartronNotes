@@ -21,11 +21,13 @@ import {
 import logo from '../../assets/logo.png'
 import { useTheme } from '../../context/DarkAndLight.jsx'
 import { Link } from 'react-router-dom';
+import {useAuth} from '../../context/DataContext.jsx'
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const {login} = useAuth()
     const [activeCategory, setActiveCategory] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
-    const {  toggleTheme } = useTheme();
+    const { toggleTheme } = useTheme();
     const MENUDATA = [
         { icon: <FaThLarge />, name: 'All', slug: 'all' },
         { icon: <FaMugHot />, name: 'Cafe', slug: 'cafe' },
@@ -45,20 +47,20 @@ export default function Navbar() {
                 <div className="flex items-center justify-between py-3 gap-2 sm:gap-4 md:gap-6">
                     {/* Logo Section */}
                     <Link to="/">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="flex items-center gap-1.5 sm:gap-2 cursor-pointer group shrink-0"
-                    >
-                        <img
-                            src={logo}
-                            alt="PureBuy Logo"
-                            className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 object-contain"
-                        />
-                        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-linear-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
-                            PureBuy
-                        </h1>
-                    </motion.div></Link>
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex items-center gap-1.5 sm:gap-2 cursor-pointer group shrink-0"
+                        >
+                            <img
+                                src={logo}
+                                alt="PureBuy Logo"
+                                className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 object-contain"
+                            />
+                            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-linear-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
+                                PureBuy
+                            </h1>
+                        </motion.div></Link>
 
                     {/* Search Bar - Tablet and up */}
                     <div className="hidden md:flex flex-1 max-w-xs lg:max-w-md xl:max-w-lg 2xl:max-w-xl mx-2 lg:mx-4">
@@ -83,22 +85,26 @@ export default function Navbar() {
                             whileTap={{ scale: 0.9 }}
                             className="p-1.5 sm:p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
                         >
-                                <FaSun className="text-yellow-500 dark:hidden text-sm sm:text-base lg:text-lg" />
-                                <FaMoon className="hidden dark:block text-gray-300 text-sm sm:text-base lg:text-lg" />
-                            
+                            <FaSun className="text-yellow-500 dark:hidden text-sm sm:text-base lg:text-lg" />
+                            <FaMoon className="hidden dark:block text-gray-300 text-sm sm:text-base lg:text-lg" />
+
                         </motion.button>
 
                         {/* Login Button - Tablet and up */}
-                        <Link to='/login'>
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="hidden md:flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg font-medium bg-green-600 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700 text-white shadow-md hover:shadow-lg transition-all duration-300 text-sm lg:text-base"
-                        >
-                            <FaUser className="text-xs lg:text-sm" />
-                            <span>Login</span>
-                        </motion.button>
+                        {
+                            login? "Log Out":
+                             <Link to='/login'>
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="hidden md:flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg font-medium bg-green-600 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700 text-white shadow-md hover:shadow-lg transition-all duration-300 text-sm lg:text-base"
+                            >
+                                <FaUser className="text-xs lg:text-sm" />
+                                <span>Login</span>
+                            </motion.button>
                         </Link>
+                        }
+                       
 
                         {/* Cart Button */}
                         <motion.button
@@ -152,8 +158,8 @@ export default function Navbar() {
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setActiveCategory(item.slug)}
                                 className={`flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg font-medium whitespace-nowrap transition-all duration-300 text-sm lg:text-base ${activeCategory === item.slug
-                                        ? 'bg-green-600 text-white shadow-md'
-                                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 dark:hover:text-green-400'
+                                    ? 'bg-green-600 text-white shadow-md'
+                                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 dark:hover:text-green-400'
                                     }`}
                             >
                                 <span className={`text-sm lg:text-base ${activeCategory === item.slug ? 'text-white' : 'text-green-600 dark:text-green-400'}`}>
@@ -229,8 +235,8 @@ export default function Navbar() {
                                                         setIsMobileMenuOpen(false);
                                                     }}
                                                     className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 text-sm ${activeCategory === item.slug
-                                                            ? 'bg-green-600 text-white'
-                                                            : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                                        ? 'bg-green-600 text-white'
+                                                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                                                         }`}
                                                 >
                                                     <span className={`text-base ${activeCategory === item.slug ? 'text-white' : 'text-green-600 dark:text-green-400'}`}>

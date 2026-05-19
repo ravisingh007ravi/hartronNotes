@@ -3,9 +3,12 @@ import { useFormik } from 'formik';
 import { FaGoogle, FaApple, FaEye, FaEyeSlash, FaEnvelope, FaLock } from 'react-icons/fa';
 import { useState } from 'react';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { showSuccessToast, showErrorToast } from '../notification/Tost'
+import { local } from '../../ApiUrl'
+import {useAuth} from '../../context/DataContext'
 
-// Login validation schema
 const loginValidationSchema = Yup.object({
   email: Yup.string()
     .email('Invalid email address')
@@ -16,16 +19,43 @@ const loginValidationSchema = Yup.object({
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const Navigate = useNavigate()
+  const {setlogin} =useAuth()
   const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
+    initialValues: { email: '', password: '' },
     validationSchema: loginValidationSchema,
     onSubmit: async (values) => {
-      console.log('Login data:', values);
-      // Add your login logic here
+      try {
+        setLoading(true)
+        const res = await axios.post(`${local}user/loh_in`, values)
+
+        if (res.status == 200) {
+          const id = res.data.id
+          const token = res.data.token
+          localStorage.setItem('userId', id)
+          localStorage.setItem('usertoken', token)
+          showSuccessToast(res?.data?.msg || 'error message')
+          setlogin(true)
+          Navigate('/')
+        }
+      }
+      catch (err) {
+        if ((err.response.data.msg) == 'pls verify otp') {
+          showErrorToast(err.response.data.msg || 'server error')
+          Navigate(`/otp-verification/${err?.response?.data?.id}`)
+        }
+        else if ((err?.response?.data?.msg) == 'user not found') {
+          showErrorToast(err.response.data.msg || 'server error')
+          Navigate(`/signup`)
+        }
+        else {
+          showErrorToast(err.response.data.msg || 'server error')
+        }
+      }
+      finally {
+        setLoading(false)
+      }
     },
   });
 
@@ -40,12 +70,12 @@ export default function Login() {
   return (
     <div className="h-screen bg-gray-100 flex items-center justify-center p-4 pt-40">
       <div className="max-w-6xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
-        
+
         {/* Left Side - Image */}
         <div className="md:w-1/2 relative">
-          <img 
-            src="https://img.magnific.com/free-vector/healthy-menu-blackboard_23-2147494330.jpg?t=st=1778561078~exp=1778564678~hmac=424a8cbb5dd57e65d0ba0c5ec3bf39a0fbf379883ee6fca81571cc8b1c02748e&w=1480" 
-            alt="Healthy menu" 
+          <img
+            src="https://img.magnific.com/free-vector/healthy-menu-blackboard_23-2147494330.jpg?t=st=1778561078~exp=1778564678~hmac=424a8cbb5dd57e65d0ba0c5ec3bf39a0fbf379883ee6fca81571cc8b1c02748e&w=1480"
+            alt="Healthy menu"
             className="w-full h-full object-cover"
           />
         </div>
@@ -68,11 +98,10 @@ export default function Login() {
                 type="email"
                 name="email"
                 placeholder="Enter your email..."
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-300 ${
-                  formik.touched.email && formik.errors.email
-                    ? 'border-red-500 focus:ring-red-500'
-                    : 'border-gray-300 focus:ring-green-500 focus:border-green-500'
-                }`}
+                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-300 ${formik.touched.email && formik.errors.email
+                  ? 'border-red-500 focus:ring-red-500'
+                  : 'border-gray-300 focus:ring-green-500 focus:border-green-500'
+                  }`}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
@@ -93,11 +122,10 @@ export default function Login() {
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   placeholder="Enter your password..."
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-300 ${
-                    formik.touched.password && formik.errors.password
-                      ? 'border-red-500 focus:ring-red-500'
-                      : 'border-gray-300 focus:ring-green-500 focus:border-green-500'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-300 ${formik.touched.password && formik.errors.password
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-300 focus:ring-green-500 focus:border-green-500'
+                    }`}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
@@ -125,9 +153,12 @@ export default function Login() {
             {/* Submit Button */}
             <button
               type="submit"
+              disabled={loading}
               className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transform hover:scale-105 transition duration-300 shadow-md"
             >
-              Log In
+              {
+                loading ? 'Loading' : 'Log In'
+              }
             </button>
           </form>
 

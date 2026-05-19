@@ -7,6 +7,7 @@ import Signup from './components/Auth/Signup.jsx'
 import Login from './components/Auth/Log.jsx'
 import OTP from './components/OtpVerification.jsx'
 export default function App() {
+  
   return (
     <BrowserRouter>
       <Navbar />

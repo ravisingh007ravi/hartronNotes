@@ -3,13 +3,16 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { ThemeProvider } from './context/DarkAndLight.jsx'
-import {ToastContainer} from 'react-toastify'
+import { DataProvider } from './context/DataContext.jsx'
+import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider>
-      <ToastContainer/>
-      <App />
-    </ThemeProvider>
+    <DataProvider>
+      <ThemeProvider>
+        <ToastContainer />
+        <App />
+      </ThemeProvider>
+    </DataProvider>
   </StrictMode>,
 )

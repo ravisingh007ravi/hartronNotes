@@ -31,7 +31,6 @@ export default function Signup() {
       const id = res?.data?.db?.id
    
       if(res.status==200 || res.status==201){
-        
         showSuccessToast(res.data.msg || 'Sucessfully Create Account')
         Navigate(`/otp-verification/${id}`)
       }
