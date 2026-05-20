@@ -5,4 +5,4 @@ import {create_user} from "../controller/user_controller.js"
 export const router = express.Router()
 
 
-router.get('/test',create_user)
+router.post('/user/create_user',create_user)

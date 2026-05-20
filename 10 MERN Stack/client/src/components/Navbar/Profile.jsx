@@ -6,7 +6,7 @@ import { useAuth } from '../../context/DataContext'
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function Profile() {
-  const navigate = useNavigate() // Fixed: Changed 'Nagivate' to 'navigate'
+  const navigate = useNavigate() 
   const { setlogin } = useAuth()
 
   const handleLogout = () => {

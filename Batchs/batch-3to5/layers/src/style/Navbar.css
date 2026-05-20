@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.bg-img {
+    background-image: url(https://www.layers.shop/cdn/shop/files/BANNER_DESKTOP.png?v=1770985928);
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 70px;
+    color: white;
+}
+
+ul{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+    font-size: larger;
+}
+
+button{
+    border: none;
+    padding: 5px 10px;
+    background-color: rgb(56, 101, 217);
+    color: white;
+    border-radius: 20px;
+}
+
+div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

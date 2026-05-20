@@ -6,6 +6,7 @@ import {router} from "./routes/routes.js"
 dotenv.config()
 const port = process.env.PORT || 8080
 const app = express()
+app.use(express.json())
 
 
 mongoose.connect(process.env.MongoDBUrl)

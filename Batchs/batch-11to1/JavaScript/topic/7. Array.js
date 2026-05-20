@@ -1,40 +1,30 @@
-// array is mutable we can change by index 
-// array store all data type value like number, string, null , undefined, array, object etc
+// let arr = [1,2,11,23,23,24,8]
+// let str = ''
 
-// let str = ''//empty string 0 or false 
-// let arr = [] // empty array 0 or false
+// for (let i = 0; i <arr.length; i++) {
+//     if(arr[i]%2==0){
+//         str  = str + arr[i] + ' '
+//     }
+// }
 
-// console.log(10 && 'Ravi' && null && 123 && undefined);
-// console.log(null || 'Ravi' || null || 123 || undefined);
-
-// only data type provided index string and array
-
-// let array = [1234, 'hello', null, undefined, true, false, [1, 2, 3, 4]]
-// console.log(array[0]);
-// console.log(array[1][0]);
-
-// console.log(array[6][0]);
-// array[0]='Ravi'
-// console.log(array);
+// console.log(str);
 
 
 
-let arr = [1, 2]
+// let n = 3
 
-// add last index 
-arr.push(3)
-arr.push(4)
-console.log('Add value last index inbuld function push', arr);
-// starting index
-arr.unshift(0)
-arr.unshift(-19)
-console.log('Add value starting index inbuld function unshift', arr);
+// for(let i = 1 ;i<=10;i++){
+//     // console.log(n*i);
+//     console.log(n,'*',i,'=',n*i);
+// }
 
-// delete value last index
-arr.pop()
-console.log('delete value last index inbuld function pop', arr);
 
-// delete value statring index
-arr.shift()
-console.log('delete value starting index inbuld function shift', arr);
 
+let s = 1
+let e = 5 
+let sum = 1
+
+for( let i =s;i<=e;i++){
+    sum*=i
+}
+console.log(sum);
