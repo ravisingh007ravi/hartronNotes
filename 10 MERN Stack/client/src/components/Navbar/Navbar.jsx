@@ -22,12 +22,14 @@ import logo from '../../assets/logo.png'
 import { useTheme } from '../../context/DarkAndLight.jsx'
 import { Link } from 'react-router-dom';
 import {useAuth} from '../../context/DataContext.jsx'
+import Profile from './Profile.jsx'
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const {login} = useAuth()
     const [activeCategory, setActiveCategory] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
     const { toggleTheme } = useTheme();
+
     const MENUDATA = [
         { icon: <FaThLarge />, name: 'All', slug: 'all' },
         { icon: <FaMugHot />, name: 'Cafe', slug: 'cafe' },
@@ -92,7 +94,7 @@ export default function Navbar() {
 
                         {/* Login Button - Tablet and up */}
                         {
-                            login? "Log Out":
+                            login? <Profile/>:
                              <Link to='/login'>
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
