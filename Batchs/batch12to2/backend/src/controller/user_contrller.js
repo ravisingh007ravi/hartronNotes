@@ -1,6 +1,13 @@
-export const create_user = (req, res) => {
+import { user_model } from '../model/user_model.js'
+
+export const create_user = async (req, res) => {
     try {
-        res.send("ok byee")
+
+        const data = req.body
+
+        const db = await user_model.create(data)
+
+        res.send({ db })
     }
     catch (err) { res.send({ mss: err.message }) }
 }
