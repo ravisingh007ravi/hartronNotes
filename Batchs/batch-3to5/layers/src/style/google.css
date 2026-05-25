@@ -1,27 +1,72 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     background-color: black;
     color: white;
 }
 
-.main{
+.flex {
     display: flex;
-    flex-direction: column;
+}
+
+.justify-between {
     justify-content: space-between;
-    height: 100vh;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
     align-items: center;
 }
 
-.a{
-    display: flex;
-    width: 100vw;
-    justify-content: space-between;
+.gap-2 {
+    gap: 20px;
 }
 
-h1{
-    background-color: orange;
+.gap-5 {
+    gap: 50px;
+}
+
+.py-5 {
+    padding: 20px 0px;
+}
+
+.px-5 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.h-screen{
+    height: 100vh;
+}
+.w-full{
+    width: 100vw;
+}
+.py-2{
+    padding: 10px 0px;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.text-4xl{
+    font-size: 100px;
+}
+
+.search{
+    background-color: gray;
+    padding: 5px 20px;
+    border-radius: 30px;
+}
+
+input{
+    width: 400px;
+    background-color: gray;
+    border: none;
+    padding: 10px 20px;
 }
