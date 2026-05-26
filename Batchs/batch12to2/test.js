@@ -1,4 +1,4 @@
-let a = 987654321
-let mobileNoRegex = /^[98765][0-9]{9}$/
+let name = 'dsf'
 
-console.log(mobileNoRegex.test(a));
+
+if(!name) console.log('name required');

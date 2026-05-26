@@ -3,26 +3,25 @@ import mongoose, { Types } from 'mongoose'
 const userSchema = new mongoose.Schema({
     userImg: { type: Object },
     avatar: { type: Object, default: 'https:/' },
-    fname: { type: String, required: true, trim: true },
-    lname: { type: String, required: true, trim: true },
-    gender: { type: String, required: true, enum: ['male', 'female', 'other'], trim: true },
-    mobile: { type: Number, required: true, unique: true },
-    email: { type: String, required: true, trim: true, unique: true, lowercase: true },
-    password: { type: String, required: true, trim: true },
+    fname: { type: String, require: true, trim: true },
+    lname: { type: String, require: true, trim: true },
+    gender: { type: String, require: true, enum: ['male', 'female', 'other'], trim: true },
+    mobile: { type: Number, require: true, unique: true },
+    email: { type: String, require: true, trim: true, unique: true, lowercase: true },
+    password: { type: String, require: true, trim: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     addressList: [
         {
-            pincode: { type: Number, default: null },
+            pincode: { type: Number, default: null }, 
             city: { type: String, default: null },
             State: { type: String, enum: ['kaithal'], default: 'kaithal' },
             landmark: { type: String, default: null },
         },
     ],
     isAddress: { type: Boolean, default: false },
-    gender: { type: String, required: true, trim: true },
     verification: {
         user: {
-            logInInfo: [{ info: Object, default: null }],
+            logInInfo: [{ info: Object, default: {} }],
             otp: { type: String, default: null },
             otpExpiryTime: { type: Number, default: null },
             isDelete: { type: Boolean, default: false },
@@ -35,7 +34,7 @@ const userSchema = new mongoose.Schema({
 
         },
         admin: {
-            logInInfo: [{ info: Object, default: null }],
+            logInInfo: [{ info: Object,default:{} }],
 
         }
     }

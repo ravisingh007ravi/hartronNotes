@@ -1,21 +1,10 @@
 let n = 5
-let bag = ''
-for (let i = 1; i <= n; i++) { 
-    for (let j = 1; j <= i; j++) { 
-        bag+='* '
+let result = ''
+for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+        result += (i * j) + ' '
     }
-    bag+='\n'
+    result += '\n'
 }
 
-console.log(bag);
-
-
-// let n = 3
-// let bag = ''
-// for (let i = 1; i <= n; i++) { 
-//     for (let j = 1; j <= n; j++) { 
-//         bag+='* '
-//     }
-//     console.log(bag);
-//     bag=''
-// }
+console.log(result);
