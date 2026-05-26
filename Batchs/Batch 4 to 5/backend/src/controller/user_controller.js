@@ -25,14 +25,59 @@ export const create_user = async (req, res) => {
   catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
 }
 
-
-export const get_all_user = async (req, res) => {
+export const verify_otp = async (req, res) => {
   try {
-    const DB = await user_model.find().select({email:1}).sort({createdAt:-1})
 
-    if(DB.length==0) return res.status(404).send({status:false,msg:'User not found'})
+  }
+  catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
+}
 
-    res.status(200).send({status:true,data:DB})
+export const resend_otp = async (req, res) => {
+  try {
+
+  }
+  catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
+}
+
+export const forgot_password = async (req, res) => {
+  try {
+
+  }
+  catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
+}
+
+export const login = async (req, res) => {
+  try {
+
+  }
+  catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
+}
+
+export const login_google = async (req, res) => {
+  try {
+
+  }
+  catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
+}
+
+export const update_profile_img = async (req, res) => {
+  try {
+
+  }
+  catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
+}
+
+export const update_info = async (req, res) => {
+  try {
+
+  }
+  catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
+}
+
+
+export const delete_account = async (req, res) => {
+  try {
+
   }
   catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
 }

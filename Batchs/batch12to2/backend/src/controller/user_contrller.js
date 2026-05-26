@@ -25,7 +25,6 @@ export const create_user = async (req, res) => {
         if (!ValidMobile(mobile)) return res.status(400).send({ status: false, msg: 'Mobile Name Validation Fail' })
 
 
-
         const db = await user_model.create(data)
 
         res.send({ db })
