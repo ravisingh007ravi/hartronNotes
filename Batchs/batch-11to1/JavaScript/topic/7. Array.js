@@ -1,30 +1,13 @@
-// let arr = [1,2,11,23,23,24,8]
-// let str = ''
+let n = 10000000019
 
-// for (let i = 0; i <arr.length; i++) {
-//     if(arr[i]%2==0){
-//         str  = str + arr[i] + ' '
-//     }
-// }
+let isPrime = true
 
-// console.log(str);
-
-
-
-// let n = 3
-
-// for(let i = 1 ;i<=10;i++){
-//     // console.log(n*i);
-//     console.log(n,'*',i,'=',n*i);
-// }
-
-
-
-let s = 1
-let e = 5 
-let sum = 1
-
-for( let i =s;i<=e;i++){
-    sum*=i
+for (let i = 2; i < Math.sqrt(n); i++) {
+    if (n % i == 0) {
+        isPrime = false
+        break
+    }
 }
-console.log(sum);
+
+if (isPrime) console.log('Prime');
+else console.log('Not Prime');

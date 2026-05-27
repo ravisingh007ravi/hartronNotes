@@ -1,18 +1,19 @@
 import mongoose, { Types } from 'mongoose'
+import { ValidName, ValidEmail, ValidGender, ValidMobile, ValidPassword, ValidPincode } from '../validation/allValidation.js'
 
 const userSchema = new mongoose.Schema({
     userImg: { type: Object },
     avatar: { type: Object, default: 'https:/' },
-    fname: { type: String, require: true, trim: true },
-    lname: { type: String, require: true, trim: true },
-    gender: { type: String, require: true, enum: ['male', 'female', 'other'], trim: true },
-    mobile: { type: Number, require: true, unique: true },
-    email: { type: String, require: true, trim: true, unique: true, lowercase: true },
-    password: { type: String, require: true, trim: true },
+    fname: { type: String, required: [true, 'Name is Required...'], trim: true, validate:[ValidName,'Name is not Valid...'] },
+    lname: { type: String, required: [true, 'Last name is Required...'],validate:[ValidName,'Invliad Last Name...'], trim: true },
+    gender: { type: String, required: true, enum: ['male', 'female', 'other'], trim: true },
+    mobile: { type: Number, required: true, unique: true },
+    email: { type: String, required: true, trim: true, unique: true, lowercase: true },
+    password: { type: String, required: true, trim: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     addressList: [
         {
-            pincode: { type: Number, default: null }, 
+            pincode: { type: Number, default: null },
             city: { type: String, default: null },
             State: { type: String, enum: ['kaithal'], default: 'kaithal' },
             landmark: { type: String, default: null },
@@ -34,7 +35,7 @@ const userSchema = new mongoose.Schema({
 
         },
         admin: {
-            logInInfo: [{ info: Object,default:{} }],
+            logInInfo: [{ info: Object, default: {} }],
 
         }
     }
