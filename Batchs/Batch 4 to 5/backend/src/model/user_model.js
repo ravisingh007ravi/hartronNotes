@@ -1,18 +1,19 @@
 import mongoose from 'mongoose'
+import { ValidName, ValidEmail, ValidGender, ValidMobile, ValidPassword, ValidPincode } from '../validation/all_validation.js'
 
 const userSchema = new mongoose.Schema({
     userImg: { type: Object },
     avatar: { type: Object, default: 'https:/' },
-    fname: { type: String, require: true, trim: true },
-    lname: { type: String, require: true, trim: true },
-    gender: { type: String, require: true, enum: ['male', 'female', 'other'], trim: true },
-    mobile: { type: Number, require: true, unique: true },
-    email: { type: String, require: true, trim: true, unique: true, lowercase: true },
-    password: { type: String, require: true, trim: true },
+    fname: { type: String, required: [true, 'First Name is Required...'], validate: [ValidName, 'Invalid First Name'], trim: true },
+    lname: { type: String, required: [true, 'Last Name is Required...'], validate: [ValidName, 'Invalid Last Name'], trim: true },
+    gender: { type: String, required: [true, 'Gender is Required...(male, frmale and other)'], validate: [ValidGender, 'Invalid Gender Name'], enum: ['male', 'female', 'other'], trim: true },
+    mobile: { type: Number, required: [true, 'Mobile No is Required...'], validate: [ValidMobile, 'Invalid Mobile No'], unique: true },
+    email: { type: String, required: [true, 'Email is Required...'], trim: true, unique: true, lowercase: true, validate: [ValidEmail, 'Invalid Email Id'], },
+    password: { type: String, required: [true, 'Password is Required...'], trim: true, validate: [ValidPassword, 'Invalid Password'], },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     addressList: [
         {
-            pincode: { type: Number, default: null }, 
+            pincode: { type: Number, default: null, validate: [ValidPincode, 'Invalid pincode No'], },
             city: { type: String, default: null },
             State: { type: String, enum: ['kaithal'], default: 'kaithal' },
             landmark: { type: String, default: null },
@@ -34,7 +35,7 @@ const userSchema = new mongoose.Schema({
 
         },
         admin: {
-            logInInfo: [{ info: Object,default:{} }],
+            logInInfo: [{ info: Object, default: {} }],
 
         }
     }
