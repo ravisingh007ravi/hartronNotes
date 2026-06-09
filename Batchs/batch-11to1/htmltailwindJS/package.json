@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  },
+  "name": "htmltailwindjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx @tailwindcss/cli -i ./src/style/input.css -o ./src/style/output.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
