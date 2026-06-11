@@ -4,12 +4,12 @@ import { ValidName, ValidEmail, ValidGender, ValidMobile, ValidPassword, ValidPi
 const userSchema = new mongoose.Schema({
     userImg: { type: Object },
     avatar: { type: Object, default: 'https:/' },
-    fname: { type: String, required: [true, 'Name is Required...'], trim: true, validate: [ValidName, 'Name is not Valid...'] },
+    fname: { type: String, required: [true, 'First Name is Required...'], trim: true, validate: [ValidName, 'Name is not Valid...'] },
     lname: { type: String, required: [true, 'Last name is Required...'], validate: [ValidName, 'Invliad Last Name...'], trim: true },
     gender: { type: String, required: true, enum: ['male', 'female', 'other'], trim: true },
     mobile: { type: Number, required: [true, 'Mobile No. is Requires'], validate: [ValidMobile, 'Invalid Mobile No...'], unique: true },
-    email: { type: String, required: true, trim: true, unique: true, lowercase: true },
-    password: { type: String, required: true, trim: true },
+    email: { type: String, required: [true, 'Email is Requires'],validate: [ValidEmail, 'Email is not Valid...'], trim: true, unique: true, lowercase: true },
+    password: { type: String, required: [true, 'Password is Requires'], trim: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     abc:{type:String},
     addressList: [

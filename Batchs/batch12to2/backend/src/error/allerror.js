@@ -1,4 +1,5 @@
 export const errorhandling = (err, res) => {
+ if(err.name == 'TypeError')    return res.status(400).send({status: false,msg:"Can't Send Empty Data"})
 
     if (err.name === 'ValidationError') {
 
