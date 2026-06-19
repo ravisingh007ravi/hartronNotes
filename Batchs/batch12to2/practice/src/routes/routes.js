@@ -1,6 +1,6 @@
 import exress from 'express'
-import {create_user} from '../controller/user_controller.js'
+import { create_user } from '../controller/user_controller.js'
 
 export const router = exress.Router()
 
-router.post('/test',create_user)
+router.post('/user/create_user', create_user)
