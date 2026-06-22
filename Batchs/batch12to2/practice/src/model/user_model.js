@@ -1,22 +1,22 @@
 import mongoose from 'mongoose'
 import { ValidName, ValidEmail, ValidGender, ValidMobile, ValidPassword, ValidPincode } from '../validation/allValidation.js'
 import bcrypt from 'bcrypt'
-
+import { profile_img } from '../img/Img_url.js'
 
 const user_schema = new mongoose.Schema({
-    userImg: { type: Object }, 
+    userImg: { type: Object },
     avatar: { type: Object, default: 'https:/' },
     fname: { type: String, required: [true, 'First Name is Required...'], trim: true, validate: [ValidName, 'Name is not Valid...'] },
     lname: { type: String, required: [true, 'Last name is Required...'], validate: [ValidName, 'Invliad Last Name...'], trim: true },
     gender: { type: String, required: true, enum: ['male', 'female', 'other'], trim: true },
-    mobile: { type: Number, required:false, validate: [ValidMobile, 'Invalid Mobile No...'] },
+    mobile: { type: Number, required: false, validate: [ValidMobile, 'Invalid Mobile No...'] },
     email: { type: String, required: [true, 'Email is Required'], validate: [ValidEmail, 'Email is not Valid...'], trim: true, unique: true, lowercase: true },
-    password: { type: String, required: [true, 'Password is Required'],validate: [ValidPassword, 'Password is not Valid...'], trim: true },
+    password: { type: String, required: [true, 'Password is Required'], validate: [ValidPassword, 'Password is not Valid...'], trim: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     addressList: [
         {
             pincode: { type: Number, default: null },
-            city: { type: String, default: null },  
+            city: { type: String, default: null },
             State: { type: String, enum: ['kaithal'], default: 'kaithal' },
             landmark: { type: String, default: null },
         },
@@ -46,6 +46,7 @@ const user_schema = new mongoose.Schema({
 
 user_schema.pre('save', async function () {
     this.password = await bcrypt.hash(this.password, 10);
+    if (this.userImg) this.userImg = await profile_img(this.userImg.path)
 });
 
 export const user_model = mongoose.model('users', user_schema)

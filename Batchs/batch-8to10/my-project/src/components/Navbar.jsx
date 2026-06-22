@@ -1,9 +1,13 @@
-import React from 'react'
+import { useState } from 'react'
 import { IoIosHome, IoMdMale, IoMdFemale, IoMdPeople, } from "react-icons/io";
 import { FaBoxOpen, FaBlog, FaPhoneAlt, } from "react-icons/fa";
+import { FaBarsStaggered } from "react-icons/fa6";
+import { IoCloseSharp } from "react-icons/io5";
 
 
 export default function Navbar() {
+
+  const [toggle, setToggle] = useState(true)
 
   const MENUData = [
     {
@@ -43,6 +47,11 @@ export default function Navbar() {
     },
   ];
 
+  const AuthData = [
+    { name: 'SignUp', slug: "/signup", icons: <IoIosHome /> },
+    { name: 'SignIn', slug: "/signin", icons: <IoIosHome /> },
+  ]
+
 
   return (
     <div>
@@ -51,7 +60,7 @@ export default function Navbar() {
 
         <h1>Logo</h1>
 
-        <ul className='flex gap-5 items-center'>
+        <ul className='md:flex hidden gap-5 items-center'>
 
           {
             MENUData.map((v, i) => (
@@ -64,12 +73,58 @@ export default function Navbar() {
 
         </ul>
 
-        <div>
-          <button>Sign Up</button>
-          <button>Sign In</button>
+        <div className='md:flex hidden gap-5'>
+          {
+            AuthData.map((v, i) => (
+
+              <a className='flex  items-center gap-3' href={v.slug}>
+                {v.icons}
+                <h1>{v.name}</h1>
+              </a>
+
+            ))
+          }
         </div>
+
+        <div onClick={() => setToggle(!toggle)} className='md:hidden '>
+          {
+            toggle ? <IoCloseSharp /> : <FaBarsStaggered />
+          }
+        </div>
+
+        {
+          toggle &&
+          <ul className='flex flex-col w-full mt-108 py-5  transition duration-700 md:hidden gap-5 items-center absolute left-0 bg-gray-400'>
+
+            {
+              MENUData.map((v, i) => (
+                <li key={i} className='flex items-center gap-3'>
+                  {v.icon}
+                  <h1>{v.name}</h1>
+                </li>
+              ))
+            }
+
+            <div className='flex gap-5'>
+              {
+                AuthData.map((v, i) => (
+
+                  <a className='flex  items-center gap-3' href={v.slug}>
+                    {v.icons}
+                    <h1>{v.name}</h1>
+                  </a>
+
+                ))
+              }
+            </div>
+
+          </ul>
+        }
+
       </nav>
 
     </div>
   )
 }
+
+
