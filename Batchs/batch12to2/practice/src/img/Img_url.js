@@ -19,7 +19,7 @@ export const profile_img = async (img) => {
 
         const uploadResult = await cloudinary.uploader.upload(
             `data:image/jpeg;base64,${optimizedBuffer.toString('base64')}`,
-            { resource_type: 'auto', quality: 'auto', folder: 'prospecter' });
+            { resource_type: 'auto', quality: 'auto', folder: 'User Profile Images' });
 
         return uploadResult;
     }
