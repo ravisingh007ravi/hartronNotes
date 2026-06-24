@@ -9,24 +9,27 @@ export const create_user = async (req, res) => {
         const userImg = req.file
         const { fname, lname, gender, email } = data
 
+        const normalizedEmail = email.replace(/\+(\d+)(?=@)/, '').replace(/\.(?=[^@]*@)/g, '');
+        
         const checkEmail = await user_model.findOne({ email })
         .select({ email: 1, 'verification.user.isVerify': 1 })
 
         let otp = crypto.randomInt(1000, 9999)
         const otpExpiryTime = Date.now() + 1000 * 60 * 5
 
-
         if (checkEmail) {
-            if (checkEmail.verification.user.isVerify) {
+            if (checkEmail?.verification?.user?.isVerify) {
                 return res.status(400).send({ status: false, message: 'Account Already Exists... Pls Login' })
             }
             await user_model.findOneAndUpdate({ email }, { $set: { verification: { user: { otp, otpExpiryTime } } } })
+            //mail
             return res.status(400).send({ status: false, message: 'Pls Verify Your Email' })
         }
 
         data.verification = { user: { otp, otpExpiryTime } }
         data.role = 'user'
-        if (userImg) data.userImg = userImg
+        data.email = normalizedEmail
+        if (userImg) data.userImg = userImg.path
 
         const DB = await user_model.create(data)
 
@@ -37,3 +40,4 @@ export const create_user = async (req, res) => {
     }
     catch (err) { error_handling(err, res) }
 }
+

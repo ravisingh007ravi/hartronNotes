@@ -46,7 +46,7 @@ const user_schema = new mongoose.Schema({
 
 user_schema.pre('save', async function () {
     this.password = await bcrypt.hash(this.password, 10);
-    if (this.userImg) this.userImg = await profile_img(this.userImg.path)
+    if (this.userImg) this.userImg = await profile_img(this.userImg)
 });
 
 export const user_model = mongoose.model('users', user_schema)

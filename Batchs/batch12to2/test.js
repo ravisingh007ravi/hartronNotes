@@ -1,3 +1,6 @@
-const expreTime = Date.now()
-
-console.log(expreTime)
+if(null){
+    console.log('A')
+}
+else{
+    console.log('B')
+}
