@@ -9,4 +9,4 @@ const apitest = (req,res)=>{
 
 app.get('/test',apitest)
 
-app.listen(port,console.log(`server is runnig port = ${port}`))                                     
+app.listen(port,console.log(`server is runnig port = ${port}`))
