@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Oi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&family=Oi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&family=Oi&family=Sue+Ellen+Francisco&display=swap');
+
+.oi-regular {
+  font-family: "Oi", serif;
+}
+
+.mea-culpa-regular {
+  font-family: "Mea Culpa", cursive;
+}
+
+.sue-ellen-francisco-regular {
+  font-family: "Sue Ellen Francisco", cursive;
+}

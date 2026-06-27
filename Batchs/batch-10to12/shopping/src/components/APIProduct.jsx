@@ -17,7 +17,7 @@ export default function APIProduct() {
             console.log(err)
         }
     }
-console.log(data)
+
 
     useEffect(()=>{
         fetchDataFromApi()
@@ -32,7 +32,7 @@ console.log(data)
                         <div key={index} className='flex flex-col bg-white text-black rounded-2xl'>
                             <img className='rounded-t-2xl' src={items.picture.large} alt="" />
 
-                            <div>
+                            <div className='flex gap-3 oi-regular text-sm px-3 justify-center py-2'>
                                 <h1>{items.name.title}</h1>
                                 <h1>{items.name.first}</h1>
                                 <h1>{items.name.last}</h1>

@@ -6,7 +6,7 @@ import APIProduct from './components/APIProduct'
 export default function App() {
   return (
     <div>
-      {/* <Navbar/> */}
+      <Navbar/>
       {/* <UserInput/> */}
       {/* <Home/> */}
       <APIProduct/>
