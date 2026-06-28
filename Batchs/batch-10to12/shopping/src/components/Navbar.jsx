@@ -27,7 +27,7 @@ export default function Navbar() {
         <ul className='lg:flex hidden gap-5'>
           {
             MENUDATA.map((items, index) => (
-              <a href={items.slug}>
+              <a key={index} href={items.slug}>
                 <div className='flex gap-3 items-center hover:bg-linear-to-r from-cyan-500 via-[#0492f0] to-blue-500 px-3 py-2 rounded-md'>
                   {items.icon}
                   <li>{items.name}</li>
