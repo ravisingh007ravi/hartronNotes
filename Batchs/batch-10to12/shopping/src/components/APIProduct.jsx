@@ -1,45 +1,81 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { GrLinkPrevious, GrLinkNext } from "react-icons/gr";
 import axios from 'axios'
-
-export default function APIProduct() {
+export default function User() {
 
     const [data, setData] = useState([])
+    const [limit, setlimit] = useState(5)
+    const [page, setPage] = useState(1)
+    const [totalitem, settotalIte] = useState(0)
 
-    const fetchDataFromApi = async () => {
+    const fetchData = async () => {
         try {
-            const url = 'https://api.freeapi.app/api/v1/public/randomusers?page=1&limit=500'
+            const url = `https://api.freeapi.app/api/v1/public/randomusers?page=${page}&limit=${limit}`
 
-            const db = await axios.get(url)
+            const DB = await axios.get(url)
+            settotalIte(DB.data.data.totalItems)
+            setData(DB.data.data.data)
 
-            setData(db?.data?.data?.data)
         }
         catch (err) {
             console.log(err)
         }
     }
 
+    useEffect(() => {
+        fetchData()
+    }, [limit,page])
 
-    useEffect(()=>{
-        fetchDataFromApi()
-    },[])
+
 
     return (
-        <div className='bg-black text-white'>
-            
-            <div className='grid p-5 gap-1 sm:gap-2 md:gap-3 ls:gap-4 xl:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
-                {
-                    data.map((items, index) => (
-                        <div key={index} className='flex flex-col bg-white text-black rounded-2xl'>
-                            <img className='rounded-t-2xl' src={items.picture.large} alt="" />
+        <div className='min-h-screen text-white flex flex-col   pb-10'>
+            {/* top  */}
+            <div className='flex justify-between items-center py-5 px-2 sm:px-5 md:px-8 lg:px-10 xl:px-15 2xl:px-20'>
+                <h1>Total Product - {totalitem}</h1>
+                <h1 className='text-5xl a'>All Users</h1>
+                <select name="" id="" onClick={(e) => setlimit(e.target.value)}>
+                    {
+                        [5, 10, 20, 50, 100,500].map((range, index) => (
+                            <option className='text-black' key={index}>{range}</option>
+                        ))
+                    }
 
-                            <div className='flex gap-3 oi-regular text-sm px-3 justify-center py-2'>
-                                <h1>{items.name.title}</h1>
-                                <h1>{items.name.first}</h1>
-                                <h1>{items.name.last}</h1>
+                </select>
+            </div>
+            {/* Product Section */}
+            <div className='gap-5    px-2 sm:px-5 md:px-8 lg:px-10 xl:px-15 2xl:px-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7'>
+
+                {
+                    data.map((item, index) => (
+                        <div className=' rounded-2xl text-black bg-gray-300'>
+                            <img className='w-full rounded-t-2xl bg-cover object-cover' src={item.picture.large} alt="" />
+                            <div className='flex items-center gap-0.5 justify-center font-semibold text-xl b text-orange-600'>
+                                <h1>{item.name.title}</h1>
+                                <h1>{item.name.firts}</h1>
+                                <h1>{item.name.last}</h1>
+
+                            </div>
+                            <h1 className='text-center text-lg font-semibold'>Email - {item.email}</h1>
+                            <div className='p-4'>
+                                <button className='bg-blue-500 w-full rounded-lg'>Click</button>
                             </div>
                         </div>
                     ))
                 }
+            </div>
+
+            {/* Paggination */}
+            <div className='flex  justify-center items-center gap-5'>
+                <div className='flex items-center gap-2' onClick={()=>setPage(page-1)}>
+                    <GrLinkPrevious />
+                    <h1>Previous</h1>
+                </div>
+                <h1>Page - {page}</h1>
+                <div className='flex items-center gap-2' onClick={()=>setPage(page+1)}>
+                    <h1>Next</h1>
+                    <GrLinkNext />
+                </div>
             </div>
         </div>
     )

@@ -5,6 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaUsers, FaUser, FaBook, FaDog } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
+import {Link} from 'react-router-dom'
 
 export default function Navbar() {
 
@@ -12,11 +13,9 @@ export default function Navbar() {
 
   const MENUDATA = [
     { icon: <FaUsers />, name: "All User", slug: "/all-user" },
-    { icon: <FaUser />, name: "Random User", slug: "/random-user" },
-    { icon: <FaBook />, name: "All Book", slug: "/all-book" },
-    { icon: <FaBook />, name: "Random Book", slug: "/random-book" },
-    { icon: <FaDog />, name: "All Dogs", slug: "/all-dogs" },
-    { icon: <FaDog />, name: "Random Dog", slug: "/random-dog" },
+    { icon: <FaUser />, name: "All Product", slug: "/all-product" },
+    { icon: <FaBook />, name: "User Input", slug: "/user-input" },
+
   ];
   return (
     <div>
@@ -27,12 +26,12 @@ export default function Navbar() {
         <ul className='lg:flex hidden gap-5'>
           {
             MENUDATA.map((items, index) => (
-              <a key={index} href={items.slug}>
+              <Link key={index} to={items.slug}>
                 <div className='flex gap-3 items-center hover:bg-linear-to-r from-cyan-500 via-[#0492f0] to-blue-500 px-3 py-2 rounded-md'>
                   {items.icon}
                   <li>{items.name}</li>
                 </div>
-              </a>
+              </Link>
             ))
           }
         </ul>
