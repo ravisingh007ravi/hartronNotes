@@ -1,54 +1,80 @@
 import { useState } from 'react'
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaUsers, FaUser, FaBook, FaDog } from "react-icons/fa";
+import { FcBusinessman, FcFilingCabinet, FcBriefcase } from "react-icons/fc";
+import { GrLogin } from "react-icons/gr";
+import { IoIosCreate } from "react-icons/io";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { IoClose } from "react-icons/io5";
-import {Link} from 'react-router-dom'
+import { RiCloseLargeFill } from "react-icons/ri";
+
 
 export default function Navbar() {
 
   const [open, setOpen] = useState(true)
 
-  const MENUDATA = [
-    { icon: <FaUsers />, name: "All User", slug: "/all-user" },
-    { icon: <FaUser />, name: "All Product", slug: "/all-product" },
-    { icon: <FaBook />, name: "User Input", slug: "/user-input" },
+  const MenuData = [
+    { name: 'All USers', icons: <FcBusinessman className='text-3xl' />, link: '/all-user' },
+    { name: 'All Product', icons: <FcFilingCabinet className='text-3xl' />, link: '/all-product' },
+    { name: 'User Input', icons: <FcBriefcase className='text-3xl' />, link: '/user-input' },
+  ]
 
-  ];
+  const Auth = [
+    { name: 'Log-In', link: '/log-in', icons: <GrLogin className='text-3xl' /> },
+    { name: 'Sign-Up', link: '/sign-up', icons: <IoIosCreate className='text-3xl' /> },
+  ]
+
   return (
-    <div>
+    <header className='p-5 z-0'>
+      <nav className='flex justify-between bg-white py-4 px-2 md:px-4 lg:px-8 xl:px-15 2xl:px-20 items-center rounded-full'>
 
-      <nav className='flex justify-between items-center p-5 bg-black text-white sue-ellen-francisco-regular'>
         <h1>RS</h1>
 
-        <ul className='lg:flex hidden gap-5'>
+        <ul className='lg:flex hidden items-center gap-5'>
           {
-            MENUDATA.map((items, index) => (
-              <Link key={index} to={items.slug}>
-                <div className='flex gap-3 items-center hover:bg-linear-to-r from-cyan-500 via-[#0492f0] to-blue-500 px-3 py-2 rounded-md'>
-                  {items.icon}
-                  <li>{items.name}</li>
-                </div>
-              </Link>
+            MenuData.map(({ name, icons, link }, i) => (
+              <a href={link}>
+                <li className='flex gap-3 items-center hover:scale-125 duration-300' key={i}>{icons} <h1>{name}</h1>  </li>
+              </a>
             ))
           }
         </ul>
 
-        <div className='lg:flex hidden gap-5'>
-          <a href="https://github.com/ravisingh007ravi" target='blank'><FaGithub /></a>
-          <a href=""><FaLinkedinIn /></a>
-          <a href=""><FaInstagram /></a>
-        </div>
+        <div className='lg:flex hidden gap-5 items-center'>
 
-        <div onClick={() => setOpen(!open)} className='lg:hidden cursor-pointer'>
           {
-            open ? <FaBarsStaggered /> : <IoClose />
+            Auth.map(({ name, icons, link }, i) => (
+              <a key={i} href={link}><button className='flex items-center gap-3'>{icons} <h1>{name}</h1></button></a>
+
+            ))
           }
         </div>
-      </nav>
 
-    </div>
+        <div onClick={() => setOpen(!open)} className='lg:hidden'>
+          {
+            open ? < RiCloseLargeFill /> : <FaBarsStaggered />
+          }
+        </div>
+
+        {/* Mobile Section Data  */}
+        {open && <div className='lg:hidden absolute w-full inset-s-0 top-18 px-10 '>
+          <ul className='bg-white flex flex-col pb-5 items-center gap-5 rounded-b-lg'>
+            {
+              MenuData.map(({ name, icons, link }, i) => (
+                <a href={link}>
+                  <li className='flex gap-3 items-center hover:scale-125 duration-300' key={i}>{icons} <h1>{name}</h1>  </li>
+                </a>
+              ))
+            }
+            <div className='lg:hidden flex gap-5 items-center '>
+
+              {
+                Auth.map(({ name, icons, link }, i) => (
+                  <a key={i} href={link}><button className='flex items-center gap-3'>{icons} <h1>{name}</h1></button></a>
+
+                ))
+              }
+            </div>
+          </ul>
+        </div>}
+      </nav>
+    </header>
   )
 }

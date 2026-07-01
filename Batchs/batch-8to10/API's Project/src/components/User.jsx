@@ -240,8 +240,8 @@ export default function User() {
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
                             className={`w-9 h-9 flex items-center justify-center rounded-md border transition-colors ${currentPage === 1
-                                    ? 'border-slate-200 text-slate-300 cursor-not-allowed'
-                                    : 'border-slate-300 text-slate-600 hover:border-blue-600 hover:text-blue-600 bg-white'
+                                ? 'border-slate-200 text-slate-300 cursor-not-allowed'
+                                : 'border-slate-300 text-slate-600 hover:border-blue-600 hover:text-blue-600 bg-white'
                                 }`}
                         >
                             <FaChevronLeft size={12} />
@@ -265,8 +265,8 @@ export default function User() {
                                         key={pageNum}
                                         onClick={() => handlePageChange(pageNum)}
                                         className={`w-9 h-9 rounded-md font-medium text-sm transition-colors ${currentPage === pageNum
-                                                ? 'bg-blue-600 text-white'
-                                                : 'bg-white text-slate-600 border border-slate-300 hover:border-blue-600 hover:text-blue-600'
+                                            ? 'bg-blue-600 text-white'
+                                            : 'bg-white text-slate-600 border border-slate-300 hover:border-blue-600 hover:text-blue-600'
                                             }`}
                                     >
                                         {pageNum}
@@ -279,8 +279,8 @@ export default function User() {
                             onClick={() => handlePageChange(currentPage + 1)}
                             disabled={currentPage === totalPages}
                             className={`w-9 h-9 flex items-center justify-center rounded-md border transition-colors ${currentPage === totalPages
-                                    ? 'border-slate-200 text-slate-300 cursor-not-allowed'
-                                    : 'border-slate-300 text-slate-600 hover:border-blue-600 hover:text-blue-600 bg-white'
+                                ? 'border-slate-200 text-slate-300 cursor-not-allowed'
+                                : 'border-slate-300 text-slate-600 hover:border-blue-600 hover:text-blue-600 bg-white'
                                 }`}
                         >
                             <FaChevronRight size={12} />

@@ -4,7 +4,7 @@ import { Data } from './Data'
 export default function Home() {
 
   return (
-    <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5    p-4">
+    <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5     p-4">
 
       {
         Data.map(({title,Offer,price,img}, index) => (
