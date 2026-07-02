@@ -1,4 +1,5 @@
 export const error_handling = (error, res) => {
+  
   if (error.code == 11000) {
     return res.status(400).send({ status: false, type: 'Duplicate Entry', message: `already exists ${error.keyValue.email || error.keyValue.mobile}` })
   }

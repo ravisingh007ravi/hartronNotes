@@ -2,6 +2,7 @@ import crypto from 'crypto'
 import { error_handling } from '../error/allError.js'
 import { user_model } from '../model/user_model.js'
 import { user_otp_verification_mail } from '../mail/all_mail_formate.js'
+
 export const create_user = async (req, res) => {
     try {
 
@@ -46,9 +47,9 @@ export const create_user = async (req, res) => {
 
 export const user_otp_verify = async (req, res) => {
     try {
-        const id = req.params?.id || req.query?.id
+        const id = req.query?.id
         const otp = req.body?.otp
-
+        console.log(id)
         if (!id) return res.status(400).send({ status: false, message: 'Id is Required' })
         if (!otp) return res.status(400).send({ status: false, message: 'Otp is Required' })
 
@@ -69,7 +70,30 @@ export const user_otp_verify = async (req, res) => {
                 { $set: { 'verification.user.isVerify': true, 'verification.user.otp': null, 'verification.user.otpExpiryTime': null } })
             return res.status(200).send({ status: true, message: "otp Verify Sucessfully..." })
         }
-        return res.status(400).send({ status: false, message: "Wrong Otp" })
+
+        const atm = data.verification.user.otpAtm
+        
+        if (atm == 0) {
+            const lockTime = ['1m', '5m', '10m', '1h', '24h', '1w', '1m', '1y', '10y']
+            const locktimeInSecond = {
+                '1m': Date.now() + 1000 * 60,
+                '5m': Date.now() + 1000 * 60 * 5,
+                '10m': Date.now() + 1000 * 60 * 10,
+                '1h': Date.now() + 1000 * 60 * 60,
+                '24h': Date.now() + 1000 * 60 * 60 * 24,
+                '1w': Date.now() + 1000 * 60 * 60 * 24 * 7,
+                '1y': Date.now() + 1000 * 60 * 60 * 24 * 365,
+                '10y': Date.now() + 1000 * 60 * 60 * 24 * 365 * 10,
+
+            } 
+            return res.send("lock")
+        }
+        const a = await user_model.findByIdAndUpdate({ _id: id },
+            { $set: { 'verification.user.otpAtm': atm - 1 } },
+            { new: true }
+        )
+        return res.status(400).send({ status: false, message: `Wrong Otp remain attemp ${atm - 1}` })
+
     }
     catch (err) { error_handling(err, res) }
 }
