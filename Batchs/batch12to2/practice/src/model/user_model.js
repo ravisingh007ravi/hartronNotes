@@ -30,11 +30,10 @@ const user_schema = new mongoose.Schema({
             isDelete: { type: Boolean, default: false },
             isVerify: { type: Boolean, default: false },
             otpAtm: { type: Number, default: 3 },
-            otpBloackTime: { type: Number, default: null },
-            otpblockStatus: { type: String, enum: ['1m', '5m', '10m', '1h', '24h', '1w', '1m', '1y', '10y'] },
+            otpLockUntil: { type: Number, default: null },
+            otpLockStage: { type: Number, default: -1 },
             blockAcc: { type: Boolean, default: false },
             blockReason: { type: String, default: null },
-
         },
         admin: {
 
@@ -50,4 +49,3 @@ user_schema.pre('save', async function () {
 });
 
 export const user_model = mongoose.model('users', user_schema)
-
