@@ -7,6 +7,7 @@ const MOngoDBUrl = ''
 
 
 const app = express()
+app.use(express.json())
 
 mongoose.connect(MOngoDBUrl)
     .then(() => console.log('MongoDB Connected'))
