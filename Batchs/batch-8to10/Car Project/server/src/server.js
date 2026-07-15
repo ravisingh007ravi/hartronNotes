@@ -6,8 +6,8 @@ import { router } from './routes/routes.js'
 dotenv.config({ quiet: true });
 const port = process.env.PORT || 8080
 const app = express()
+app.use(express.json())
 
- 
 mongoose.connect(process.env.URLDB)
     .then(() => console.log('Mongodb Connected'))
     .catch((err) => console.log(err.message))
@@ -15,3 +15,4 @@ mongoose.connect(process.env.URLDB)
 app.use('/', router)
 
 app.listen(port, () => console.log(`Server is Running = ${port}`))  
+  

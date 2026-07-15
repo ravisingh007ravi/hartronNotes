@@ -247,3 +247,51 @@ export const user_login = async (req, res) => {
 
     catch (err) { error_handling(err, res) }
 }
+
+export const user_change_img = async (req, res) => {
+    try {
+
+    }
+
+    catch (err) { error_handling(err, res) }
+}
+
+export const user_add_address = async (req, res) => {
+    try {
+
+    }
+
+    catch (err) { error_handling(err, res) }
+}
+
+export const user_update_address = async (req, res) => {
+    try {
+
+    }
+
+    catch (err) { error_handling(err, res) }
+}
+
+export const user_delete_address = async (req, res) => {
+    try {
+
+    }
+
+    catch (err) { error_handling(err, res) }
+}
+
+export const user_update_profile = async (req, res) => {
+    try {
+
+    }
+
+    catch (err) { error_handling(err, res) }
+}
+
+export const user_delete_account = async (req, res) => {
+    try {
+
+    }
+
+    catch (err) { error_handling(err, res) }
+}
