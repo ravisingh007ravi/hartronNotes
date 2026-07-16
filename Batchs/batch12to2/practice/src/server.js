@@ -4,7 +4,7 @@ import cors from 'cors'
 import { router } from './routes/routes.js'   
 import dotenv from 'dotenv'
 
-dotenv.config()
+dotenv.config({quiet:true})
 
 const app = express()
 app.use(express.json())

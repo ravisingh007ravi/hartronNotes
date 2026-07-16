@@ -242,6 +242,37 @@ export const resend_otp = async (req, res) => {
 
 export const user_login = async (req, res) => {
     try {
+        const data = req.body
+
+        const { email, password } = data
+
+        if (!email) return res.status(400).send({ status: false, msg: 'Email id is Required' })
+        if (!password) return res.status(400).send({ status: false, msg: 'Password id is Required' })
+
+
+            // check password is correct or not
+
+        const checkEmal = await user_model.findOne({ email: email })
+        if (!checkEmal) return res.status(400).send({ status: false, msg: 'User Not Found' })
+
+        if (checkEmal) {
+            const { isDelete, blockAcc, isVerify } = checkEmal.verification.user
+            if (isDelete) return res.status(400).send({ status: false, msg: 'Account Deleted' })
+            if (blockAcc) return res.status(400).send({ status: false, msg: 'Account Block' })
+            if (!isVerify) {
+
+                // write code here check atm and send otp mail and DB
+                return res.status.send({status:true,msg:''})
+
+            }
+        }
+
+       // token create user
+
+        
+
+        res.send({ data: checkEmal })
+
 
     }
 
