@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true, trim: true },
     isverify: { type: Boolean, required: true, default: false },
     isdelete: { type: Boolean, required: true, default: false },
-    
+
     state: { type: mongoose.Schema.Types.ObjectId, ref: "state" },
     order: { type: mongoose.Schema.Types.ObjectId, ref: "order" },
     card: { type: mongoose.Schema.Types.ObjectId, ref: "cart" },
@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
     }
 
 })
+
 
 
 export const user_model = mongoose.model('user', userSchema)
