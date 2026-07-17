@@ -1,4 +1,6 @@
 import { user_model } from '../model/user_model.js'
+import {validName,validEmail,validPassword} from '../validation/allValidation.js'
+
 
 export const user_signup = async (req, res) => {
     try {
@@ -7,19 +9,15 @@ export const user_signup = async (req, res) => {
 
         const { name, email, password } = data
 
-        const nameRegex = /^[A-Za-z \s]{2,50}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-
+    
         if (!name) return res.status(400).send({ status: false, message: "Name is Require" })
         if (!email) return res.status(400).send({ status: false, message: "Email is Require" })
         if (!password) return res.status(400).send({ status: false, message: "Password is Require" })
 
 
-        if (!nameRegex.test(name)) return res.status(400).send({ status: false, message: "Name Invalid" })
-        if (!emailRegex.test(email)) return res.status(400).send({ status: false, message: "Email Invalid" })
-        if (!passwordRegex.test(password)) return res.status(400).send({ status: false, message: "Password Invalid" })
+        if (!validName(name)) return res.status(400).send({ status: false, message: "Name Invalid" })
+        if (!validEmail(email)) return res.status(400).send({ status: false, message: "Email Invalid" })
+        if (!validPassword(password)) return res.status(400).send({ status: false, message: "Password Invalid" })
 
         const CheckEmail = await user_model.findOne({email:email})
         
