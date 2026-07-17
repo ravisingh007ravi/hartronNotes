@@ -14,5 +14,4 @@ mongoose.connect(process.env.URLDB)
 
 app.use('/', router)
 
-app.listen(port, () => console.log(`Server is Running = ${port}`))  
-  
+app.listen(port, () => console.log(`Server is Running = ${port}`))
