@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 
 dotenv.config({quiet:true})
+
 export const create_user = async (req, res) => {
     try {
 
