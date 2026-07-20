@@ -1,15 +1,14 @@
 import { user_model } from '../model/user_model.js'
-import {validName,validEmail,validPassword} from '../validation/allValidation.js'
+import { validName, validEmail, validPassword } from '../validation/allValidation.js'
 
 
 export const user_signup = async (req, res) => {
     try {
 
         const data = req.body
-
         const { name, email, password } = data
 
-    
+
         if (!name) return res.status(400).send({ status: false, message: "Name is Require" })
         if (!email) return res.status(400).send({ status: false, message: "Email is Require" })
         if (!password) return res.status(400).send({ status: false, message: "Password is Require" })
@@ -19,10 +18,11 @@ export const user_signup = async (req, res) => {
         if (!validEmail(email)) return res.status(400).send({ status: false, message: "Email Invalid" })
         if (!validPassword(password)) return res.status(400).send({ status: false, message: "Password Invalid" })
 
-        const CheckEmail = await user_model.findOne({email:email})
-        
+        const CheckEmail = await user_model.findOne({ email: email })
+
         if (CheckEmail) return res.status(400).send({ status: false, message: "Email Already Present" })
 
+        data.role ="user"
 
         const db = await user_model.create(data)
 

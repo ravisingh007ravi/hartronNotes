@@ -12,4 +12,4 @@ router.post('/api/user/login_user', logIn_user)
 
 router.get('/api/user/getData', getData)
 
-// Admin Api's
+// Admin Api's 

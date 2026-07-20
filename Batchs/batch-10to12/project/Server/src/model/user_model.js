@@ -24,11 +24,10 @@ const userSchema = new mongoose.Schema({
     role: { type: String, required: true, enum: ['user', 'admin'], default: 'user' },
     verification: {
         user: {
-            otp: {},
-            otpExpiryTime: {},
-            otpAtm: {},
-            isblock: {},
-            reasonBlock: {}
+            otp: { type: Number, default: null },
+            otpExpiryTime: { type: Number, default: null },
+            isblock: { type: Number, default: null },
+            reasonBlock: { type: String, default: null, trim: true }
         },
         admin: {
 

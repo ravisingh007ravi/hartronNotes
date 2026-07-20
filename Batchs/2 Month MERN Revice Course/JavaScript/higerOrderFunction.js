@@ -49,9 +49,8 @@
 
 function printNumbers(num) {
     if (num == 10) return
-
-    printNumbers(num + 1);
-    return num
+    console.log(num)
+    printNumbers(num + 1)
 }
 
-console.log(printNumbers(1))
+printNumbers(1)
