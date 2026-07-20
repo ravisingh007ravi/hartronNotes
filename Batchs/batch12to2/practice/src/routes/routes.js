@@ -8,12 +8,12 @@ import {
 const upload = multer({ storage: multer.diskStorage({}) });
 
 export const router = exress.Router()
-
+ 
 // user API's
 router.post('/user/create_user', upload.single('userImg'), create_user)
-router.post('/user/user_login',user_login)
 router.post('/user/user_otp_verify', user_otp_verify)
 router.get('/user/resend_otp/:id', resend_otp)
+router.post('/user/user_login',user_login)
 router.put('/user/user_change_img', upload.single('userImg'), user_change_img)
 router.post('/user/user_add_address', user_add_address)
 router.put('/user/user_update_address', user_update_address)

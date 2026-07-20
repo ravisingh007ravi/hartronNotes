@@ -2,7 +2,12 @@ import crypto from 'crypto'
 import { error_handling } from '../error/allError.js'
 import { user_model } from '../model/user_model.js'
 import { user_otp_verification_mail } from '../mail/all_mail_formate.js'
+import { OTP_LOCK_LADDER, formatRemaining,  formatLockTime, checkOtpLock, generateAndSendOtp, checkUserLoginStatus } from '../utils/otpUtils.js'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
 
+dotenv.config({quiet:true})
 export const create_user = async (req, res) => {
     try {
 
@@ -75,29 +80,6 @@ export const user_otp_verify = async (req, res) => {
     try {
         const id = req.query?.id
         const otp = req.body?.otp
-
-        const OTP_LOCK_LADDER = [
-            1000 * 60,
-            1000 * 60 * 5,
-            1000 * 60 * 10,
-            1000 * 60 * 60,
-            1000 * 60 * 60 * 24,
-            1000 * 60 * 60 * 24 * 7,
-            1000 * 60 * 60 * 24 * 365,
-            1000 * 60 * 60 * 24 * 365 * 10,
-
-        ]
-
-        const formatRemaining = (ms) => {
-            const s = Math.ceil(ms / 1000)
-            if (s < 60) return `${s}s`
-            const m = Math.ceil(s / 60)
-            if (m < 60) return `${m}m`
-            const h = Math.ceil(m / 60)
-            if (h < 24) return `${h}h`
-            const d = Math.ceil(h / 24)
-            return `${d}d`
-        }
 
         if (!id) return res.status(400).send({ status: false, message: 'Id is Required' })
         if (!otp) return res.status(400).send({ status: false, message: 'Otp is Required' })
@@ -184,100 +166,74 @@ export const user_otp_verify = async (req, res) => {
 
 export const resend_otp = async (req, res) => {
     try {
-
         const { id } = req.params
 
         if (!id) return res.status(400).send({ status: false, message: 'Id is Required' })
 
-        const checkEmail = await user_model.findById(id)
+        const user = await user_model.findById(id)
             .select({ email: 1, fname: 1, verification: 1 })
-        let otp = crypto.randomInt(1000, 9999)
-        const otpExpiryTime = Date.now() + 1000 * 60 * 5
+        
+        if (!user) return res.status(404).send({ status: false, message: 'User not found' })
 
-
-        if (!checkEmail) return res.status(404).send({ status: false, message: 'User not found' })
-
-
-        if (checkEmail) {
-            if (checkEmail?.verification?.user?.isVerify) {
-                return res.status(400).send({ status: false, message: 'Account Already Exists... Pls Login' })
-            }
-
-            const lockUntil = checkEmail?.verification?.user?.otpLockUntil
-            if (lockUntil && Date.now() < lockUntil) {
-
-                const d = new Date(lockUntil);
-
-                const formatted =
-                    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')} ` +
-                    `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
-
-                return res.status(429).send({
-                    status: false,
-                    message: 'Too many wrong attempts. Pls try again after some time',
-                    data: { id: checkEmail._id }, lockTime: formatted, RawDate: lockUntil
-
-                })
-            }
-
-            await user_model.findOneAndUpdate(
-                { _id: id },
-                {
-                    $set: {
-                        'verification.user.otp': otp,
-                        'verification.user.otpExpiryTime': otpExpiryTime,
-                    }
-                }
-            )
-            user_otp_verification_mail(checkEmail.fname, checkEmail.email, otp)
-            return res.status(400).send({
-                status: false, message: 'Pls Verify Your Email',
-                data: { id: checkEmail._id, email: checkEmail.email }
-            })
+        const result = await generateAndSendOtp(user)
+        
+        if (!result.success) {
+            return res.status(400).send(result.response)
         }
-    }
 
-    catch (err) { error_handling(err, res) }
+        return res.status(400).send(result.response)
+    }
+    catch (err) { 
+        error_handling(err, res) 
+    }
 }
 
 export const user_login = async (req, res) => {
     try {
         const data = req.body
-
         const { email, password } = data
 
         if (!email) return res.status(400).send({ status: false, msg: 'Email id is Required' })
         if (!password) return res.status(400).send({ status: false, msg: 'Password id is Required' })
 
+        const user = await user_model.findOne({ email: email })
+        if (!user) return res.status(400).send({ status: false, msg: 'User Not Found' })
 
-            // check password is correct or not
-
-        const checkEmal = await user_model.findOne({ email: email })
-        if (!checkEmal) return res.status(400).send({ status: false, msg: 'User Not Found' })
-
-        if (checkEmal) {
-            const { isDelete, blockAcc, isVerify } = checkEmal.verification.user
-            if (isDelete) return res.status(400).send({ status: false, msg: 'Account Deleted' })
-            if (blockAcc) return res.status(400).send({ status: false, msg: 'Account Block' })
-            if (!isVerify) {
-
-                // write code here check atm and send otp mail and DB
-                return res.status.send({status:true,msg:''})
-
-            }
+        const loginCheck = await checkUserLoginStatus(user)
+        
+        if (!loginCheck.success) {
+            return res.status(400).send(loginCheck.response)
         }
 
-       // token create user
+        const isPasswordValid = await bcrypt.compare(password, user.password)
+        if (!isPasswordValid) {
+            return res.status(400).send({ status: false, msg: 'Invalid Password' })
+        }
 
-        
+        const token = jwt.sign({ userId: user._id, role: user.role }, process.env.user_secret_key, { expiresIn: '7d' })
 
-        res.send({ data: checkEmal })
-
-
+        return res.status(200).send({
+            status: true,
+            msg: 'Login Successful',
+            data: {
+                id: user._id,
+                email: user.email,
+                fname: user.fname,
+                role: user.role,
+                token: token
+            }
+        })
     }
-
-    catch (err) { error_handling(err, res) }
+    catch (err) { 
+        error_handling(err, res) 
+    }
 }
+
+
+
+
+
+
 
 export const user_change_img = async (req, res) => {
     try {
