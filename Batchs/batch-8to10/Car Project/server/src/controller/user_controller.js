@@ -22,7 +22,16 @@ export const create_user = async (req, res) => {
         const checkEmail = await user_model.findOne({ email: email })
         if (checkEmail) return res.status(400).send({ status: false, message: "Email Already Present" })
 
-        const DB = await user_model.create(data)
+        const otp = Math.floor(1000 + Math.random() * 9000)
+        const otpExpiryTime = Date.now() + 1000 * 60 * 5
+
+        const uploadData = {
+            name, email, password, role: 'user',
+            verification: { user: { otp, otpExpiryTime } }
+        }
+
+
+        const DB = await user_model.create(uploadData)
         res.status(200).send({ status: true, message: "Create data Successfully", data: DB })
 
     }

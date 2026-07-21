@@ -1,6 +1,5 @@
 import express from 'express'
-import { create_user, otp_verification, resend_otp_user, logIn_user,getData
- } from '../controller/user_controller.js'
+import { create_user, otp_verification, resend_otp_user, logIn_user,getData } from '../controller/user_controller.js'
 export const router = express.Router()
 
 
@@ -11,5 +10,8 @@ router.post('/api/user/resend_otp_user', resend_otp_user)
 router.post('/api/user/login_user', logIn_user)
 
 router.get('/api/user/getData', getData)
+
+
+router.use((_, res) => { res.status(404).send({ status: false, msg: 'Invalid URL' }) });
 
 // Admin Api's 
