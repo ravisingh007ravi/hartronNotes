@@ -1,6 +1,6 @@
 import { user_model } from '../model/user_model.js'
 import { validName, validEmail, validPassword } from '../validation/allValidation.js'
-
+import { newOtpSend } from '../mail/all_mail_formate.js'
 
 export const user_signup = async (req, res) => {
     try {
@@ -22,9 +22,16 @@ export const user_signup = async (req, res) => {
 
         if (CheckEmail) return res.status(400).send({ status: false, message: "Email Already Present" })
 
-        data.role ="user"
+        const otpExpiryTime = Date.now() + 1000 + 60 + 5
+        const otp = Math.floor(1000 + Math.random() * 9000)
 
-        const db = await user_model.create(data)
+        const uploadData = {
+            name, email, password,
+            role: 'user',
+            verification: { user: { otp, otpExpiryTime } }
+        }
+        const db = await user_model.create(uploadData)
+        newOtpSend(email, name, otp)
 
         res.status(200).send({ message: db })
     }

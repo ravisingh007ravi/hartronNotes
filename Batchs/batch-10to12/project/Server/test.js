@@ -1,6 +1,3 @@
-let name = 'fsadf'
-const nameRegex = /^[A-Za-z\s]{2,50}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-console.log(passwordRegex.test('RaviRAvi'))
+const otpExpiryTime = Date.now()+1000+60+5
+const otp = Math.floor(1000+Math.random()*9000)
+console.log(otp)
