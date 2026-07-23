@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
+import { validName, validEmail, validPassword } from '../validation/allvalidation.js'
 
 const userSchema = new mongoose.Schema({
     profileImg: { type: Object },
-    name: { type: String, required: true, trim: true },
-    email: { type: String, required: true, trim: true, unique: true, lowercase: true },
-    password: { type: String, required: true },
-    role: { type: String, enum: ['admin', 'user', 'manager'], default: 'user',required:true,lowercase: true },
+    name: { type: String, required: [true, 'name is Required'], validate: [validName, 'Name is Invalid'], trim: true },
+    email: { type: String, required: [true, 'email is Required'], validate: [validEmail, 'Email is Invalid'], trim: true, unique: true, lowercase: true },
+    password: { type: String, required: [true, 'password is Required'], validate: [validPassword, 'Password is Invalid'] },
+    role: { type: String, enum: ['admin', 'user', 'manager'], default: 'user', required: true, lowercase: true },
     verification: {
         user: {
             otp: { type: Number, default: null },

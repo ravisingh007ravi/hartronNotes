@@ -16,13 +16,13 @@ const transporter = nodemailer.createTransport({
 export const newOtpSend = async (email, name, otp) => {
     try {
         const info = await transporter.sendMail({
-            from: '"Example Team" <team@example.com>', // sender address
-            to: email, // list of recipients
-            subject: "Hello", // subject line
-            text: "Hello world?", // plain text body
+            from: process.env.SMTP_USER,
+            to: email, 
+            subject: "Hello",
+            text: "Hello world?",
             html: `hello ${name},
             your otp is ${otp}
-            `, // HTML body
+            `, 
         });
 
         console.log("Message sent: %s", info.messageId);

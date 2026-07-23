@@ -1,5 +1,5 @@
 import { user_model } from '../model/user_model.js'
-
+import { error_handling } from '../error/allerror.js'
 export const create_user = async (req, res) => {
     try {
 
@@ -7,17 +7,6 @@ export const create_user = async (req, res) => {
 
         const { name, email, password } = data
 
-        const nameRegex = /^[A-Za-z ]{2,50}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-        if (!name) return res.status(400).send({ status: false, message: "Name is Required" })
-        if (!email) return res.status(400).send({ status: false, message: "Email is Required" })
-        if (!password) return res.status(400).send({ status: false, message: "Password is Required" })
-
-        if (!nameRegex.test(name)) return res.status(400).send({ status: false, message: "Name Invaild" })
-        if (!emailRegex.test(email)) return res.status(400).send({ status: false, message: "Email Invaild" })
-        if (!passwordRegex.test(password)) return res.status(400).send({ status: false, message: "Password Invaild" })
 
         const checkEmail = await user_model.findOne({ email: email })
         if (checkEmail) return res.status(400).send({ status: false, message: "Email Already Present" })
@@ -35,7 +24,7 @@ export const create_user = async (req, res) => {
         res.status(200).send({ status: true, message: "Create data Successfully", data: DB })
 
     }
-    catch (err) { return res.status(500).send({ status: false, message: err.message }) }
+    catch (err) {error_handling(err,res) }
 }
 
 
@@ -47,7 +36,7 @@ export const getData = async (req, res) => {
 
         res.status(200).send({ Status: true, message: 'Get All Data', Data: DB })
     }
-    catch (err) { return res.status(500).send({ status: false, message: err.message }) }
+    catch (err) {error_handling(err,res) }
 }
 
 
