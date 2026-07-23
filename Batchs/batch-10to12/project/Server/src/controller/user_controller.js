@@ -1,6 +1,7 @@
 import { user_model } from '../model/user_model.js'
-import { validName, validEmail, validPassword } from '../validation/allValidation.js'
 import { newOtpSend } from '../mail/all_mail_formate.js'
+import { error_handling } from '../error/all_error.js'
+
 
 export const user_signup = async (req, res) => {
     try {
@@ -8,18 +9,7 @@ export const user_signup = async (req, res) => {
         const data = req.body
         const { name, email, password } = data
 
-
-        if (!name) return res.status(400).send({ status: false, message: "Name is Require" })
-        if (!email) return res.status(400).send({ status: false, message: "Email is Require" })
-        if (!password) return res.status(400).send({ status: false, message: "Password is Require" })
-
-
-        if (!validName(name)) return res.status(400).send({ status: false, message: "Name Invalid" })
-        if (!validEmail(email)) return res.status(400).send({ status: false, message: "Email Invalid" })
-        if (!validPassword(password)) return res.status(400).send({ status: false, message: "Password Invalid" })
-
         const CheckEmail = await user_model.findOne({ email: email })
-
         if (CheckEmail) return res.status(400).send({ status: false, message: "Email Already Present" })
 
         const otpExpiryTime = Date.now() + 1000 + 60 + 5
@@ -35,9 +25,7 @@ export const user_signup = async (req, res) => {
 
         res.status(200).send({ message: db })
     }
-    catch (err) {
-        res.status(500).send({ "message": err.message })
-    }
+    catch (err) { error_handling(err, res) }
 }
 
 // status code 
@@ -49,6 +37,19 @@ export const user_signup = async (req, res) => {
 // 500 server 
 
 
-export const getAllUser = (req, res) => {
-    res.send("hii")
+export const verify_otp = (req, res) => {
+    try {
+
+    }
+    catch (err) { error_handling(err, res) }
+
+}
+
+
+export const resend_otp = (req, res) => {
+    try {
+
+    }
+    catch (err) { error_handling(err, res) }
+
 }

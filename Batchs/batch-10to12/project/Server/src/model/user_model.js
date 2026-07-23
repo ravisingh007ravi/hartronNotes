@@ -1,13 +1,13 @@
 import mongoose, { Types } from "mongoose";
-
+import { validName, validEmail, validPassword } from '../validation/allValidation.js'
 
 const userSchema = new mongoose.Schema({
-    name: { type: String, required: true, trim: true },
-    email: { type: String, required: true, trim: true, unique: true, lowercase: true },
-    password: { type: String, required: true, trim: true },
+    name: { type: String, required: [true, 'Name is Required'], validate: [validName, "Invalid Name"], trim: true },
+    email: { type: String, required: [true, 'Email is Required'], validate: [validEmail, "Invalid Email"], trim: true, unique: true, lowercase: true },
+    password: { type: String, required: [true, 'Password is Required'], validate: [validPassword, "Invalid Password"], trim: true },
     isverify: { type: Boolean, required: true, default: false },
     isdelete: { type: Boolean, required: true, default: false },
-
+    
     state: { type: mongoose.Schema.Types.ObjectId, ref: "state" },
     order: { type: mongoose.Schema.Types.ObjectId, ref: "order" },
     card: { type: mongoose.Schema.Types.ObjectId, ref: "cart" },
