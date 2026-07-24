@@ -1,10 +1,11 @@
 import { user_model } from '../model/user_model.js'
 import { error_handling } from '../error/allerror.js'
+import { user_new_otp } from '../mail/all_mail_formate.js'
+
 export const create_user = async (req, res) => {
     try {
 
         const data = req.body
-
         const { name, email, password } = data
 
 
@@ -21,10 +22,12 @@ export const create_user = async (req, res) => {
 
 
         const DB = await user_model.create(uploadData)
+        user_new_otp(email,name,otp)
+
         res.status(200).send({ status: true, message: "Create data Successfully", data: DB })
 
     }
-    catch (err) {error_handling(err,res) }
+    catch (err) { error_handling(err, res) }
 }
 
 
@@ -36,7 +39,7 @@ export const getData = async (req, res) => {
 
         res.status(200).send({ Status: true, message: 'Get All Data', Data: DB })
     }
-    catch (err) {error_handling(err,res) }
+    catch (err) { error_handling(err, res) }
 }
 
 
