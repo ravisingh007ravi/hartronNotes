@@ -2,6 +2,7 @@ import mongoose, { Types } from "mongoose";
 import { validName, validEmail, validPassword } from '../validation/allValidation.js'
 
 const userSchema = new mongoose.Schema({
+    profileImg:{type:Object},
     name: { type: String, required: [true, 'Name is Required'], validate: [validName, "Invalid Name"], trim: true },
     email: { type: String, required: [true, 'Email is Required'], validate: [validEmail, "Invalid Email"], trim: true, unique: true, lowercase: true },
     password: { type: String, required: [true, 'Password is Required'], validate: [validPassword, "Invalid Password"], trim: true },
@@ -22,13 +23,13 @@ const userSchema = new mongoose.Schema({
         }
     ],
     role: { type: String, required: true, enum: ['user', 'admin'], default: 'user' },
-    verification: {
+    verification: { 
         user: {
             otp: { type: Number, default: null },
             otpExpiryTime: { type: Number, default: null },
             isblock: { type: Number, default: null },
             reasonBlock: { type: String, default: null, trim: true }
-        },
+        }, 
         admin: {
 
         }

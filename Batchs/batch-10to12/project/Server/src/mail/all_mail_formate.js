@@ -29,3 +29,21 @@ export const newOtpSend = async (email, name, otp) => {
     }
     catch (err) { console.log(err.message) }
 }
+
+
+export const resend_Otp_Send = async (email, name, otp) => {
+    try {
+        const info = await transporter.sendMail({
+            from: process.env.SMTP_USER,
+            to: email, 
+            subject: "Hello",
+            text: "Hello world?",
+            html: `hello ${name},
+            your otp is ${otp}
+            `, 
+        });
+
+        console.log("Message sent: %s", info.messageId);
+    }
+    catch (err) { console.log(err.message) }
+}
